@@ -11,13 +11,13 @@ public class Product {
     private long codeBarId;
     private String name;
     private String description;
-    private Date expirationDate;
+    private String expirationDate;
 
     public Product() {
 
     }
 
-    public Product(long codeBarId, String name, String description, Date expirationDate) {
+    public Product(long codeBarId, String name, String description, String expirationDate) {
         this.codeBarId = codeBarId;
         this.name = name;
         this.description = description;
@@ -48,11 +48,11 @@ public class Product {
         this.description = description;
     }
 
-    public Date getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
 }

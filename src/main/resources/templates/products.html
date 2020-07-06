@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>List of all the products</title>
@@ -9,6 +9,7 @@
 <body>
 <div class="container my-2">
     <h1>Products List</h1>
+    <a th:href = "@{/addNewProductForm}" class="btn btn-primary btn-sm mb-3"> Add product</a>
     <table class="table table-hover table-dark">
         <thead>
         <tr>

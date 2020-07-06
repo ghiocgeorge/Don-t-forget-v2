@@ -18,10 +18,6 @@ public class ProductService {
         return (List<Product>) productRepository.findAll();
     }
 
-    public Optional<Product> getProduct(String codeBarId) {
-        return productRepository.findById(codeBarId);
-    }
-
     public void addProduct (Product product) {
         productRepository.save(product);
     }

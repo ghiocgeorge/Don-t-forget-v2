@@ -26,10 +26,24 @@ public class ProductController {
 //        return productService.getAllProducts();
 //    }
 
-    //add a new product
+    //add a new product with Postman
     @RequestMapping(method = RequestMethod.POST, value = "/products")
     public void addTopic(@RequestBody Product product) {
         productService.addProduct(product);
+    }
+
+    //add new product with a form
+    @RequestMapping("/addNewProductForm")
+    public String addNewProductForm(Model model) {
+        Product product = new Product();
+        model.addAttribute("product", product);
+        return "add_product";
+    }
+
+    @PostMapping("/addNewProduct")
+    public String addNewProduct(@ModelAttribute("product") Product product) {
+        productService.addProduct(product);
+        return "redirect:/products";
     }
 }
 
