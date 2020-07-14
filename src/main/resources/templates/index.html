@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Don't forget · Vladut IT</title>
 
     <!-- Bootstrap core CSS -->
@@ -24,34 +26,212 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link type="text/css" href="/css/index.css" rel="stylesheet">
+    <link href="/css/offcanvas.css" rel="stylesheet">
 </head>
-<body class="text-center">
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead mb-auto">
-        <div class="inner">
-            <h3 class="masthead-brand">Don't forget</h3>
-            <nav class="nav nav-masthead justify-content-center">
-                <a class="nav-link active" href="index.html">Home</a>
-                <a class="nav-link" href="/products">Products list</a>
-                <a class="nav-link" href="#">Contact</a>
-            </nav>
-        </div>
-    </header>
+<body class="bg-gradient-light">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand mr-auto mr-lg-4" href="/dashboard">
+            <img src="../assets/brand/logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""
+                 loading="lazy">Don't forget </a>
+        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <main role="main" class="inner cover">
-        <h1 class="cover-heading">Don't forget anything, anymore.</h1>
-        <p class="lead"><i>Don't forget</i> is a reminder app. Whit this app, you will not waste time, money, food and you will know in every moment what services and food do you have available.</p>
-        <p class="lead">
-            <a href="addNewProductForm" class="btn btn-lg btn-secondary">Start now to save food, money and time</a>
-        </p>
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"> Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Jokes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign up</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <main>
+        <div class=" container text-center">
+            <img class="d-block mx-auto mb-4" src="../assets/brand/logo.svg" alt="" width="150" height="150">
+            <p class="lead"><i><b>Don't forget</b></i> is much more than a reminder app. There are several benefits
+                that make it a mandatory application in anyone's life.</p>
+        </div>
+
+        <div class="card-deck container-fluid mx-auto px-lg-5" style="max-width: 1650px;">
+            <div class="card mb-3 mr-3 container-fluid  mx-auto" style="max-width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 mt-2">
+                        <img src="../assets/brand/time.svg" width="200" height="200" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title mt-3">Management</h5>
+                            <p class="card-text">With this app, you will not waste time, money, food and you will know
+                                in every moment what services and food do you have available.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 mr-3 container-fluid mx-auto" style="max-width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 mt-2">
+                        <img src="../assets/brand/statistics.svg" width="200" height="200" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title mt-3">Statistics</h5>
+                            <p class="card-text">With the statistics you will be able to reduce the rate of items that
+                                expire or the consumption of not very beneficial products.</p>
+                            <small class="text-muted">NOT IMPLEMENTED YET! BE PATIENT! SOON!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 container-fluid mx-auto" style="max-width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 mt-2">
+                        <img src="../assets/brand/shopping.svg" width="200" height="200" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title mt-3">Shopping list</h5>
+                            <p class="card-text">If you have items that will expire and you want more, you can generate
+                                a shopping list so you don't forget about them.</p>
+                            <small class="text-muted">NOT IMPLEMENTED YET! BE PATIENT! SOON!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-deck container-fluid mx-auto px-lg-5" style="max-width: 1650px;">
+            <div class="card mb-3 container-fluid mx-auto" style="max-width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 mt-2">
+                        <img src="../assets/brand/items.svg" width="200" height="200" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title mt-3">Personalized</h5>
+                            <p class="card-text">In the application you have some predefined categories, but you can
+                                delete them and add your own categories.</p>
+                            <small class="text-muted">NOT IMPLEMENTED YET! BE PATIENT! SOON!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 container-fluid mx-auto" style="max-width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 mt-2">
+                        <img src="../assets/brand/jokes.svg" width="200" height="200" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title  mt-3">Jokes</h5>
+                            <p class="card-text">If you had a hard time, some products have expired and you would like
+                                a moment of fun, we can help you with random short jokes.</p>
+                            <small class="text-muted">NOT IMPLEMENTED YET! BE PATIENT! SOON!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 container-fluid mx-auto" style="max-width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 mt-2">
+                        <img src="../assets/brand/privacy.svg" width="200" height="200" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title  mt-3">Privacy</h5>
+                            <p class="card-text">All your data can be accessed only with the help of a user and a
+                                password that you will set at the beginning.</p>
+                            <small class="text-muted">NOT IMPLEMENTED YET! BE PATIENT! SOON!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-deck container-fluid mx-auto px-lg-5" style="max-width: 1650px;">
+            <div class="card mb-3 container-fluid mx-auto" style="max-width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 mt-2">
+                        <img src="../assets/brand/free.svg" width="200" height="200" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title mt-3">Free</h5>
+                            <p class="card-text">You can use each functionality for free, without ads, without doing
+                                anything in return, without any restrictions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 container-fluid mx-auto" style="max-width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 mt-2">
+                        <img src="../assets/brand/login.svg" width="200" height="200" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title  mt-3">From anywhere</h5>
+                            <p class="card-text"> You can enjoy all the functionalities of the application from any
+                                device, from anywhere in the world, as long as you have access to an internet
+                                connection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 container-fluid mx-auto" style="max-width: 500px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4 mt-2">
+                        <img src="../assets/brand/new.svg" width="200" height="200" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title  mt-3">New features</h5>
+                            <p class="card-text">We have many other ideas that we want to implement in this application.
+                                Stay tuned to see what's next. Until then, register and enjoy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <p class="lead">
+                <a href="addNewProductForm" class="btn btn-lg btn-warning mr-2">Log in</a>
+                <a href="addNewProductForm" class="btn btn-lg btn-outline-warning">Sign up</a>
+            </p>
+        </div>
     </main>
 
-    <footer class="mastfoot mt-auto">
+    <footer class="mastfoot mt-auto text-center">
         <div class="inner">
-            <p>© 2020 <a target="_blank" href="https://www.vladutit.ro">Vladut IT</a>.</p>
+            <p>© 2020
+                <a target="_blank" href="https://www.vladutit.ro">Vladut IT</a>.
+                <a class="ml-4" href="#"><img src="../assets/brand/up.svg" width="20">  <b>TO TOP</b></a>
+            </p>
         </div>
     </footer>
-</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+    <script src="../assets/dist/js/bootstrap.bundle.js"></script>
+    <script src="/js/offcanvas.js"></script>
 </body>
 </html>

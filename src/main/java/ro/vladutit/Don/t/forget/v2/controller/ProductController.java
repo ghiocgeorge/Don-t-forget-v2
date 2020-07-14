@@ -45,5 +45,11 @@ public class ProductController {
         productService.addProduct(product);
         return "redirect:/products";
     }
+
+    //display dashboard
+    @RequestMapping("/dashboard")
+    public String viewDashboard() {
+        return "dashboard";
+    }
 }
 
