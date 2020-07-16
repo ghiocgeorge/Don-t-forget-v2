@@ -65,14 +65,14 @@ public class ProductController {
     //display dashboard
     @RequestMapping("/dashboard")
     public String viewDashboard() {
-        return "/dashboard/dashboard";
+        return "/dashboard";
     }
 
     //display all items from dashboard
     @RequestMapping("/all")
     public String viewDashboardAll(Model model) {
         model.addAttribute("listProducts", productService.getAllProducts());
-        return "/dashboard/all";
+        return "/all";
     }
 }
 
