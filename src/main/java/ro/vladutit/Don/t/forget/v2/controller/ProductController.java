@@ -32,6 +32,7 @@ public class ProductController {
         productService.addProduct(product);
     }
 
+    //TOdo: to delete
     //add new product with a form
     @RequestMapping("/addNewProductForm")
     public String addNewProductForm(Model model) {
@@ -40,6 +41,21 @@ public class ProductController {
         return "add_product";
     }
 
+    //add new product with a form
+    @RequestMapping("/addNewItemForm")
+    public String addNewItemForm(Model model) {
+        Product product = new Product();
+        model.addAttribute("product", product);
+        return "add_item";
+    }
+
+    @PostMapping("/addNewItem")
+    public String addNewItem(@ModelAttribute("product") Product product) {
+        productService.addProduct(product);
+        return "redirect:/dashboard/all";
+    }
+
+    //TOdo: to delete
     @PostMapping("/addNewProduct")
     public String addNewProduct(@ModelAttribute("product") Product product) {
         productService.addProduct(product);
@@ -47,9 +63,16 @@ public class ProductController {
     }
 
     //display dashboard
-    @RequestMapping("/dashboard")
+    @RequestMapping("/dashboard/dashboard")
     public String viewDashboard() {
-        return "dashboard";
+        return "/dashboard/dashboard";
+    }
+
+    //display all items from dashboard
+    @RequestMapping("/dashboard/all")
+    public String viewDashboardAll(Model model) {
+        model.addAttribute("listProducts", productService.getAllProducts());
+        return "/dashboard/all";
     }
 }
 

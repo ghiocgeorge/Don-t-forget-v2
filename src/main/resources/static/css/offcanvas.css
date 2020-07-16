@@ -37,6 +37,12 @@ body {
   overflow-y: hidden;
 }
 
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #e0b21e;
+}
+
 .nav-scroller .nav {
   display: -ms-flexbox;
   display: flex;

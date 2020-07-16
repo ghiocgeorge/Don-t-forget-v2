@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Don't forget · Vladut IT</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link href="/css/offcanvas.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<!-- Start Principal menu -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+  <a class="navbar-brand mr-auto mr-lg-4" href="/">
+    <img src="../assets/brand/logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""
+         loading="lazy">Don't forget </a>
+  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/dashboard/dashboard"> Dashboard </a>
+      </li>
+      <li class="nav-item active dropdown">
+        <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+           aria-expanded="false">Add</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item active" th:href="@{/addNewItemForm}">Item</a>
+          <a class="dropdown-item" th:href="@{/addNewCategoryForm}">Category</a>
+          <a class="dropdown-item" th:href="@{/addNewShoppingForm}">Shopping list</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Notifications</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Statistics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<!-- End Principal menu -->
+
+<!-- Start main container -->
+<main>
+  <div class="py-5 container">
+    <div class=" text-center">
+      <h2>Add new item</h2>
+    </div>
+
+    <div>
+      <form action="#" th:action="@{/addNewItem}" th:object="${product}" method="POST">
+        <div class="mb-3">
+          <label for="itemBarcode">Barcode*</label>
+          <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
+                 id="itemBarcode" value="" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="itemName">Name*</label>
+          <input type="text" th:field="*{name}" placeholder="Name" class="form-control"
+                 id="itemName" value="" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="itemDescription">Description <span class="text-muted">(Optional)</span></label>
+          <input type="text" th:field="*{description}" placeholder="Product Description" class="form-control"
+                 id="itemDescription">
+        </div>
+
+        <div class="mb-3">
+          <label for="itemExpirationDate">Expiration Date*</label>
+          <input type="date" th:field="*{expirationDate}" placeholder="2020-07-20" class="form-control"
+                 id="itemExpirationDate" required>
+        </div>
+        <hr>
+        <span id="helpBlock" class="help-block">* This fields are required.</span>
+
+        <hr class="mb-4">
+
+        <button class="btn btn-outline-warning btn-lg btn-block" type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+</main>
+<!-- End main container -->
+
+      <!-- Start Footer -->
+      <footer class="mastfoot mt-auto text-center">
+        <div class="inner">
+          <p>© 2020
+            <a target="_blank" href="https://www.vladutit.ro">Vladut IT</a>.
+            <a href="#" class="ml-4" title="TO TOP"><img src="../assets/brand/up.svg" width="20"></a>
+          </p>
+        </div>
+      </footer>
+      <!-- End Footer -->
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+              integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+      </script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+      <script src="../assets/dist/js/bootstrap.bundle.js"></script>
+      <script src="/js/offcanvas.js"></script>
+</body>
+</html>
