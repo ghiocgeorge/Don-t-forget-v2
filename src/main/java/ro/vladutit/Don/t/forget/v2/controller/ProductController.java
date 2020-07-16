@@ -52,7 +52,7 @@ public class ProductController {
     @PostMapping("/addNewItem")
     public String addNewItem(@ModelAttribute("product") Product product) {
         productService.addProduct(product);
-        return "redirect:/dashboard/all";
+        return "redirect:/all";
     }
 
     //TOdo: to delete
@@ -63,13 +63,13 @@ public class ProductController {
     }
 
     //display dashboard
-    @RequestMapping("/dashboard/dashboard")
+    @RequestMapping("/dashboard")
     public String viewDashboard() {
         return "/dashboard/dashboard";
     }
 
     //display all items from dashboard
-    @RequestMapping("/dashboard/all")
+    @RequestMapping("/all")
     public String viewDashboardAll(Model model) {
         model.addAttribute("listProducts", productService.getAllProducts());
         return "/dashboard/all";

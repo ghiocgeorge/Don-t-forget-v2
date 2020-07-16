@@ -1,8 +1,8 @@
 # Don't forget
 
-_My first personal project. A reminder app._
+_My first personal project. It is much more than a reminder app. There are several benefits that make it a mandatory application in anyone's life._
 
-You can check it here: https://don-t-forget-v2.herokuapp.com/products
+You can check it here: https://don-t-forget-v2.herokuapp.com
 
 
 ## **I. Project presentation:**
