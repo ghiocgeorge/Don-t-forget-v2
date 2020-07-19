@@ -29,14 +29,14 @@ public class ItemController {
     //display dashboard
     @RequestMapping("/dashboard")
     public String viewDashboard() {
-        return "dashboard";
+        return "dashboard/dashboard";
     }
 
     //display all items from dashboard
     @RequestMapping("/all")
     public String viewDashboardAll(Model model) {
         model.addAttribute("listItems", itemService.getAllItems());
-        return "all";
+        return "dashboard/all";
     }
 
 }
