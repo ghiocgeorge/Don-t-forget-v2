@@ -66,7 +66,7 @@
     </div>
 
     <div>
-      <form action="#" th:action="@{/addNewItem}" th:object="${product}" method="POST">
+      <form action="#" th:action="@{/addNewItem}" th:object="${item}" method="POST">
         <div class="mb-3">
           <label for="itemBarcode">Barcode*</label>
           <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
@@ -87,7 +87,7 @@
 
         <div class="mb-3">
           <label for="itemExpirationDate">Expiration Date*</label>
-          <input type="date" th:field="*{expirationDate}" placeholder="2020-07-20" class="form-control"
+          <input type="date" th:field="*{expirationDate}" placeholder="YYYY-MM-DD" class="form-control"
                  id="itemExpirationDate" required>
         </div>
         <hr>

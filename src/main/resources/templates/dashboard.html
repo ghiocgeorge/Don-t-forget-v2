@@ -61,8 +61,8 @@
   <!-- Start Secondary menu -->
   <div class="nav-scroller bg-white shadow-sm">
     <nav class="nav nav-underline">
-      <a class="nav-link" href="/dashboard">Dashboard</a>
-      <a class="nav-link active" href="/all">All</a>
+      <a class="nav-link active" href="/dashboard">Dashboard</a>
+      <a class="nav-link" href="/all">All</a>
       <a class="nav-link" href="#">Expired</a>
       <a class="nav-link" href="#">Fridge</a>
       <a class="nav-link" href="#">Freeze</a>
@@ -145,13 +145,13 @@
       </div>
       <!-- End example box-->
 
-      <div class="media text-muted pt-3" th:each = "product : ${listProducts}">
+      <div class="media text-muted pt-3" th:each = "item : ${listProducts}">
         <div >
           <img class="mr-3" src="../assets/brand/meh.svg" alt="Meh" width="35" height="35">
         </div>
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
-          <strong class="d-block text-gray-dark" th:text = "${product.name}"></strong>
-          <a th:text = "${product.expirationDate}"></a>
+          <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
+          <a th:text = "${item.expirationDate}"></a>
         <div>
           <a href = "#" class="btn btn-outline-light btn-sm mb-3" title="View item">
             <img src="../assets/brand/view-grey.svg" width="20"></a>

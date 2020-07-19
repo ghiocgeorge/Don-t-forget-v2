@@ -6,18 +6,21 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Product {
+public class Item {
+    //Todo: schimbam numele din PRODUCT in ITEM si ID-ul nu mai este un CODEBAR,
+    // ci o sa fie un ID care sa creasca singur la fiecare adaugare
     @Id
     private long codeBarId;
     private String name;
     private String description;
+    //Todo: de schimbat tipul din string in date
     private String expirationDate;
 
-    public Product() {
+    public Item() {
 
     }
 
-    public Product(long codeBarId, String name, String description, String expirationDate) {
+    public Item(long codeBarId, String name, String description, String expirationDate) {
         this.codeBarId = codeBarId;
         this.name = name;
         this.description = description;
@@ -47,11 +50,12 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    //todo: de schimbat din string in date
     public String getExpirationDate() {
         return expirationDate;
     }
-
+    //todo: de primit un date si facut treaba cu exceptiile de format de data
+    // sau de primit in continuare un string dar de transformat in format de data
     public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
