@@ -6,6 +6,7 @@ import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.repository.ItemRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ItemService {
@@ -19,5 +20,20 @@ public class ItemService {
 
     public void addItem (Item item) {
         itemRepository.save(item);
+    }
+
+    public Item getItemById(Long id) {
+        Optional<Item> optional = itemRepository.findById(id);
+        Item item = null;
+        if(optional.isPresent()) {
+            item = optional.get();
+        } else {
+            throw new RuntimeException("Item not found for id: " + id);
+        }
+        return item;
+    }
+
+    public void deleteItemById(Long id) {
+        this.itemRepository.deleteById(id);
     }
 }

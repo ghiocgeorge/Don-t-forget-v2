@@ -26,7 +26,7 @@ public class ItemController {
         return "redirect:/all";
     }
 
-    //display dashboard
+    //display dashboard page
     @RequestMapping("/dashboard")
     public String viewDashboard() {
         return "dashboard/dashboard";
@@ -37,6 +37,36 @@ public class ItemController {
     public String viewDashboardAll(Model model) {
         model.addAttribute("listItems", itemService.getAllItems());
         return "dashboard/all";
+    }
+
+    //update an item by id
+    @RequestMapping("/updateItemForm/{id}")
+    public String updateItemForm(@PathVariable (value = "id") Long id, Model model) {
+        //get item from the service
+        Item item = itemService.getItemById(id);
+
+        //set item as a model attribute to pre-populate the form
+        model.addAttribute("item", item);
+        return "update_item";
+    }
+
+    //display an item by id
+    @RequestMapping("/viewItemForm/{id}")
+    public String viewItemForm(@PathVariable (value = "id") Long id, Model model) {
+        //get item from the service
+        Item item = itemService.getItemById(id);
+
+        //set item as a model attribute for view form
+        model.addAttribute("item", item);
+        return "view_item";
+    }
+
+    //delete an item by id
+    @RequestMapping("/deleteItem/{id}")
+    public String deleteItem(@PathVariable (value = "id") Long id) {
+        //call delete item method
+        this.itemService.deleteItemById(id);
+        return "redirect:/all";
     }
 
 }

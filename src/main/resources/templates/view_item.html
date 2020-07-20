@@ -32,7 +32,6 @@
         <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
            aria-expanded="false">Add</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a type="hidden" th:field="*{id}"></a>
           <a class="dropdown-item active" th:href="@{/addNewItemForm}">Item</a>
           <a class="dropdown-item" th:href="@{/addNewCategoryForm}">Category</a>
           <a class="dropdown-item" th:href="@{/addNewShoppingForm}">Shopping list</a>
@@ -64,41 +63,56 @@
 <main>
   <div class="py-5 container">
     <div class=" text-center">
-      <h2>Add new item</h2>
+      <h2>View an item</h2>
     </div>
 
     <div>
-      <form action="#" th:action="@{/addNewItem}" th:object="${item}" method="POST">
+      <div action="#"  th:object="${item}" >
+        <a type="hidden" th:field="*{id}"></a>
+
         <div class="mb-3">
           <label for="itemBarcode">Barcode</label>
-          <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
-                 id="itemBarcode" value="">
+          <a type="text" th:text="*{codeBarId}" placeholder="Barcode" class="form-control"
+             id="itemBarcode" value=""></a>
         </div>
 
         <div class="mb-3">
-          <label for="itemName">Name*</label>
-          <input type="text" th:field="*{name}" placeholder="Name" class="form-control"
-                 id="itemName" value="" required>
+          <label for="itemName">Name</label>
+          <a type="text" th:text="*{name}" placeholder="Name" class="form-control"
+             id="itemName" value=""></a>
         </div>
 
         <div class="mb-3">
-          <label for="itemDescription">Description <span class="text-muted">(Optional)</span></label>
-          <input type="text" th:field="*{description}" placeholder="Product Description" class="form-control"
-                 id="itemDescription">
+          <label for="itemDescription">Description</label>
+          <a type="text" th:text="*{description}" placeholder="Product Description" class="form-control"
+             id="itemDescription"></a>
         </div>
 
         <div class="mb-3">
-          <label for="itemExpirationDate">Expiration Date*</label>
-          <input type="date" th:field="*{expirationDate}" placeholder="YYYY-MM-DD" class="form-control"
-                 id="itemExpirationDate" required>
+          <label for="itemExpirationDate">Expiration Date</label>
+          <a type="date" th:text="*{expirationDate}" placeholder="YYYY-MM-DD" class="form-control"
+             id="itemExpirationDate"></a>
         </div>
-        <hr>
-        <span id="helpBlock" class="help-block">* This fields are required.</span>
 
         <hr class="mb-4">
 
-        <button class="btn btn-outline-warning btn-lg btn-block" type="submit">Add</button>
-      </form>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+<!--            todo: butonul nu functioneaza-->
+            <button th:href = "@{/updateItemForm/{id}(id=*{id})}" type="button"
+                    class="btn btn-outline-warning btn-lg btn-block">Edit</button>
+          </div>
+          <div class="col-md-4 mb-3">
+<!--            todo: butonul nu functioneaza-->
+            <button th:href = "@{/deleteItem/{id}(id=${item.id})}" type="button"
+                    class="btn btn-outline-danger btn-lg btn-block">Delete</button>
+          </div>
+          <div class="col-md-4 mb-3">
+            <button href="#" onclick="history.go(-1)" type="button"
+                    class="btn btn-danger btn-lg btn-block">Cancel</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </main>
