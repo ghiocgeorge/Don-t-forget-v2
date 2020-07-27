@@ -34,6 +34,6 @@ public class ItemService {
     }
 
     public void deleteItemById(Long id) {
-        this.itemRepository.deleteById(id);
+        itemRepository.deleteById(id);
     }
 }

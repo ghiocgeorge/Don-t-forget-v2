@@ -12,18 +12,18 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+    @PostMapping("/addNewItem")
+    public String addNewItem(@ModelAttribute("item") Item item) {
+        itemService.addItem(item);
+        return "redirect:/all";
+    }
+
     //add new product with a form
     @RequestMapping("/addNewItemForm")
     public String addNewItemForm(Model model) {
         Item item = new Item();
         model.addAttribute("item", item);
         return "add_item";
-    }
-
-    @PostMapping("/addNewItem")
-    public String addNewItem(@ModelAttribute("item") Item item) {
-        itemService.addItem(item);
-        return "redirect:/all";
     }
 
     //display dashboard page
