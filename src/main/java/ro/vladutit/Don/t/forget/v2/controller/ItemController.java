@@ -18,6 +18,8 @@ public class ItemController {
         return "redirect:/all";
     }
 
+    //comment for pull request test
+
     //add new product with a form
     @RequestMapping("/addNewItemForm")
     public String addNewItemForm(Model model) {
