@@ -1,0 +1,83 @@
+* [33mcommit b0f77e5b2a9769d341c8a9893a34cc7aea0e4157[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Mon Jul 27 14:04:19 2020 +0300
+[31m|[m 
+[31m|[m     test commit
+[31m|[m 
+* [33mcommit 60e7b85b025ca104024109aefe88af37ec41323c[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Mon Jul 20 23:28:29 2020 +0300
+[31m|[m 
+[31m|[m     Create requestes and buttons: view, edit, delete and cancel - backend. Create view and update form pages - frontend. Update Item model.
+[31m|[m 
+* [33mcommit bacaedf85b66b83480c92e668a0cc5542664ced6[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Sun Jul 19 16:54:25 2020 +0300
+[31m|[m 
+[31m|[m     change some routes
+[31m|[m 
+* [33mcommit 6da87a822397de4b85ad98c34c975cae025f2f90[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Sun Jul 19 16:31:45 2020 +0300
+[31m|[m 
+[31m|[m     clean all the unused files and fixed some buttons
+[31m|[m 
+* [33mcommit c29a159012bee85ae8981d4246bcb77f6a390c9d[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Sun Jul 19 15:18:01 2020 +0300
+[31m|[m 
+[31m|[m     Change from PRODUCT to ITEM and delete some unused repositories
+[31m|[m 
+* [33mcommit 7a0fa23786668468fc9a08dac98b50090e497901[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Fri Jul 17 00:04:07 2020 +0300
+[31m|[m 
+[31m|[m     Fix links
+[31m|[m 
+* [33mcommit 8e5b1b5f3208dc55c80704ca6a01bf68aa8ff55d[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Thu Jul 16 23:41:40 2020 +0300
+[31m|[m 
+[31m|[m     I moved some html files
+[31m|[m 
+* [33mcommit 74f8c5501ef0a4cb16b1845fe58dba3c76143683[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Thu Jul 16 23:32:57 2020 +0300
+[31m|[m 
+[31m|[m     Fix some links
+[31m|[m 
+* [33mcommit aa9325567da8cfdb846a184d49d3b42575c75cbf[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Thu Jul 16 23:13:52 2020 +0300
+[31m|[m 
+[31m|[m     I added a new template for ADD FORM and built a DASHBOARD and ITEMS display page.
+[31m|[m 
+* [33mcommit defaeb4789463f69645706380bf63dfac798ed35[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Wed Jul 15 01:29:26 2020 +0300
+[31m|[m 
+[31m|[m     Add a homepage - frontend
+[31m|[m 
+* [33mcommit b12f5bccf1183687a201a80138cd30617d2d958c[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Mon Jul 6 23:12:04 2020 +0300
+[31m|[m 
+[31m|[m     I add an index page, some little changes on products list page and on read.me file
+[31m|[m 
+* [33mcommit e1e4c4279417c27c05c2ddf08588803b68417896[m
+[31m|[m Author: ghiocgeorge <ghiocgeorge@gmail.com>
+[31m|[m Date:   Mon Jul 6 17:12:18 2020 +0300
+[31m|[m 
+[31m|[m     I make an add button, with an add form product, and a request post
+[31m|[m 
+* [33mcommit ded7602dbfb2ddaecfe789cffa81d143bd6feb70[m
+[31m|[m Author: Ghioc George Vladut <36055258+ghiocgeorge@users.noreply.github.com>
+[31m|[m Date:   Mon Jul 6 12:18:32 2020 +0300
+[31m|[m 
+[31m|[m     Create README.md
+[31m|[m 
+* [33mcommit 554c306c6e86767d35a18eeefee8d80c4c96d36c[m
+  Author: ghiocgeorge <ghiocgeorge@gmail.com>
+  Date:   Mon Jul 6 12:12:59 2020 +0300
+  
+      My first project - reminder app - request get with thymeleaf and post with postman

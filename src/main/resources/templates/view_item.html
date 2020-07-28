@@ -99,13 +99,13 @@
         <div class="row">
           <div class="col-md-4 mb-3">
 <!--            todo: butonul nu functioneaza-->
-            <button th:href = "@{/updateItemForm/{id}(id=*{id})}" type="button"
-                    class="btn btn-outline-warning btn-lg btn-block">Edit</button>
+            <a th:href = "@{/updateItemForm/{id}(id=*{id})}" type="button"
+                    class="btn btn-outline-warning btn-lg btn-block">Edit</a>
           </div>
           <div class="col-md-4 mb-3">
 <!--            todo: butonul nu functioneaza-->
-            <button th:href = "@{/deleteItem/{id}(id=${item.id})}" type="button"
-                    class="btn btn-outline-danger btn-lg btn-block">Delete</button>
+            <a th:href = "@{/deleteItem/{id}(id=${item.id})}" type="button"
+                    class="btn btn-outline-danger btn-lg btn-block">Delete</a>
           </div>
           <div class="col-md-4 mb-3">
             <button href="#" onclick="history.go(-1)" type="button"
