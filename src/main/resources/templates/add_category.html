@@ -54,8 +54,8 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">Add</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item active" th:href="@{/addNewItemForm}">Item</a>
-            <a class="dropdown-item" th:href="@{/addNewCategoryForm}">Category</a>
+            <a class="dropdown-item" th:href="@{/addNewItemForm}">Item</a>
+            <a class="dropdown-item active" th:href="@{/addNewCategoryForm}">Category</a>
             <a class="dropdown-item" th:href="@{/addNewShoppingForm}">Shopping list</a>
           </div>
         </li>
@@ -83,34 +83,23 @@
   <main>
     <div class="py-5 container">
       <div class=" text-center">
-        <h2>Add new item</h2>
+        <h2>Add new category</h2>
       </div>
 
       <div>
-        <form action="#" th:action="@{/addNewItem}" th:object="${item}" method="POST">
+        <form action="#" th:action="@{/addNewCategory}" th:object="${category}" method="POST">
           <div class="mb-3">
-            <label for="itemBarcode">Barcode</label>
-            <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
-                   id="itemBarcode" value="">
+            <label for="categoryName">Name*</label>
+            <input type="text" th:field="*{name}" placeholder="Category Name" class="form-control"
+                   id="categoryName" value="" required>
           </div>
 
           <div class="mb-3">
-            <label for="itemName">Name*</label>
-            <input type="text" th:field="*{name}" placeholder="Item Name" class="form-control"
-                   id="itemName" value="" required>
+            <label for="categoryDescription">Description <span class="text-muted">(Optional)</span></label>
+            <input type="text" th:field="*{description}" placeholder="Category Description" class="form-control"
+                   id="categoryDescription">
           </div>
 
-          <div class="mb-3">
-            <label for="itemDescription">Description <span class="text-muted">(Optional)</span></label>
-            <input type="text" th:field="*{description}" placeholder="Item Description" class="form-control"
-                   id="itemDescription">
-          </div>
-
-          <div class="mb-3">
-            <label for="itemExpirationDate">Expiration Date*</label>
-            <input type="date" th:field="*{expirationDate}" placeholder="YYYY-MM-DD" class="form-control"
-                   id="itemExpirationDate" required>
-          </div>
           <hr>
           <span id="helpBlock" class="help-block">* This fields are required.</span>
 
