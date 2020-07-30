@@ -16,7 +16,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     //add new category with a form
-    @RequestMapping("/addNewCategoryForm")
+    @RequestMapping("/category/add")
     public String addNewCategoryForm(Model model) {
         Category category = new Category();
         model.addAttribute("category", category);
@@ -24,7 +24,7 @@ public class CategoryController {
     }
 
     //action from add form
-    @PostMapping("/addNewCategory")
+    @PostMapping("/category/save")
     public String addnewCategory(@ModelAttribute("category") Category category) {
         categoryService.addCategory(category);
         return "redirect:/all";
