@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.vladutit.Don.t.forget.v2.model.Item;
+import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 import ro.vladutit.Don.t.forget.v2.service.ItemService;
 
 @Controller
@@ -12,15 +13,16 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @PostMapping("/addNewItem")
     public String addNewItem(@ModelAttribute("item") Item item) {
         itemService.addItem(item);
         return "redirect:/all";
     }
 
-    //comment for pull request test
-
-    //add new product with a form
+    //add new item with a form
     @RequestMapping("/addNewItemForm")
     public String addNewItemForm(Model model) {
         Item item = new Item();
@@ -30,14 +32,16 @@ public class ItemController {
 
     //display dashboard page
     @RequestMapping("/dashboard")
-    public String viewDashboard() {
+    public String viewDashboard(Model category) {
+        category.addAttribute("listCategories", categoryService.getAllCategories());
         return "dashboard/dashboard";
     }
 
     //display all items from dashboard
     @RequestMapping("/all")
-    public String viewDashboardAll(Model model) {
-        model.addAttribute("listItems", itemService.getAllItems());
+    public String viewDashboardAll(Model item, Model category) {
+        item.addAttribute("listItems", itemService.getAllItems());
+        category.addAttribute("listCategories", categoryService.getAllCategories());
         return "dashboard/all";
     }
 

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
+    <!-- Start favicon declaration -->
     <link rel="shortcut icon" type='image/x-icon' href="/favicon/favicon.ico">
     <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-192.png">
@@ -21,6 +22,7 @@
     <meta name="msapplication-TileColor" content="#FFFFFF">
     <meta name="msapplication-TileImage" content="/favicon/favicon-144.png">
     <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <!-- End favicon delaration -->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -85,13 +87,14 @@
       <a class="nav-link" href="/dashboard">Dashboard</a>
       <a class="nav-link active" href="/all">All</a>
       <a class="nav-link" href="#">Expired</a>
-      <a class="nav-link" href="#">Fridge</a>
-      <a class="nav-link" href="#">Freeze</a>
-      <a class="nav-link" href="#">Pantry</a>
-      <a class="nav-link" href="#">Car</a>
-      <a class="nav-link" href="#">Health</a>
-      <a class="nav-link" href="#">Education</a>
-      <a class="nav-link" href="#">Job</a>
+      <div th:each = "category : ${listCategories}">
+        <a class="nav-link" href="#" th:text = "${category.name}"></a>
+      </div>
+      <div class="mt-1">
+        <a th:href = "@{/addNewCategoryForm}" class="btn btn-sm" title="Add new category">
+          <img src="../assets/brand/add-grey.svg" width="20" class=""></a>
+      </div>
+
     </nav>
   </div>
   <!-- End Secondary menu -->

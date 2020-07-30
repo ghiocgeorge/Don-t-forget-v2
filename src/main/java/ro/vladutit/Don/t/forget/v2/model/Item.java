@@ -16,17 +16,28 @@ public class Item {
     //Todo: de schimbat tipul din string in date
     private String expirationDate;
 
+    @ManyToOne
+    public Category category;
+
     public Item() {
 
     }
 
-    //comment for pull request test
-
-    public Item(Long codeBarId, String name, String description, String expirationDate) {
+    public Item(Long codeBarId, String name, String description, String expirationDate, 
+                String categoryName, String categoryDescription) {
         this.codeBarId = codeBarId;
         this.name = name;
         this.description = description;
         this.expirationDate = expirationDate;
+        this.category = new Category(categoryName, categoryDescription);
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Long getId() {

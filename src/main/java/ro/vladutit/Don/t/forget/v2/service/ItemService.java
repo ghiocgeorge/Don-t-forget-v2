@@ -3,6 +3,7 @@ package ro.vladutit.Don.t.forget.v2.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.vladutit.Don.t.forget.v2.model.Item;
+import ro.vladutit.Don.t.forget.v2.repository.CategoryRepository;
 import ro.vladutit.Don.t.forget.v2.repository.ItemRepository;
 
 import java.util.List;
@@ -17,8 +18,6 @@ public class ItemService {
     public List<Item> getAllItems() {
         return (List<Item>) itemRepository.findAll();
     }
-
-    //comment for pull request test
 
     public void addItem (Item item) {
         itemRepository.save(item);
