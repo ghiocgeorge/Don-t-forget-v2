@@ -23,7 +23,8 @@ public class Item {
 
     }
 
-    public Item(Long codeBarId, String name, String description, String expirationDate, String categoryName, String categoryDescription) {
+    public Item(Long codeBarId, String name, String description, String expirationDate, 
+                String categoryName, String categoryDescription) {
         this.codeBarId = codeBarId;
         this.name = name;
         this.description = description;
