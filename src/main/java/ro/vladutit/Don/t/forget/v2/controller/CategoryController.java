@@ -15,7 +15,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    //add new category with a form
+    // Add new category
     @RequestMapping("/category/add")
     public String addNewCategoryForm(Model model) {
         Category category = new Category();
@@ -23,7 +23,6 @@ public class CategoryController {
         return "add_category";
     }
 
-    //action from add form
     @PostMapping("/category/save")
     public String addnewCategory(@ModelAttribute("category") Category category) {
         categoryService.addCategory(category);

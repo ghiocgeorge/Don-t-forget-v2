@@ -8,7 +8,7 @@ import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 import ro.vladutit.Don.t.forget.v2.service.ItemService;
 
-@Controller
+@Controller ("/item")
 public class ItemController {
     @Autowired
     private ItemService itemService;
@@ -16,37 +16,22 @@ public class ItemController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/addNewItem")
+    // Add new item
+    @PostMapping("/save")
     public String addNewItem(@ModelAttribute("item") Item item) {
         itemService.addItem(item);
         return "redirect:/all";
     }
 
-    //add new item with a form
-    @RequestMapping("/addNewItemForm")
+    @RequestMapping("/add")
     public String addNewItemForm(Model model) {
         Item item = new Item();
         model.addAttribute("item", item);
         return "add_item";
     }
 
-    //display dashboard page
-    @RequestMapping("/dashboard")
-    public String viewDashboard(Model category) {
-        category.addAttribute("listCategories", categoryService.getAllCategories());
-        return "dashboard/dashboard";
-    }
-
-    //display all items from dashboard
-    @RequestMapping("/all")
-    public String viewDashboardAll(Model item, Model category) {
-        item.addAttribute("listItems", itemService.getAllItems());
-        category.addAttribute("listCategories", categoryService.getAllCategories());
-        return "dashboard/all";
-    }
-
-    //update an item by id
-    @RequestMapping("/updateItemForm/{id}")
+    // Update an item by id
+    @RequestMapping("/edit/{id}")
     public String updateItemForm(@PathVariable (value = "id") Long id, Model model) {
         //get item from the service
         Item item = itemService.getItemById(id);
@@ -56,8 +41,8 @@ public class ItemController {
         return "update_item";
     }
 
-    //display an item by id
-    @RequestMapping("/viewItemForm/{id}")
+    // Display an item by id
+    @RequestMapping("/view/{id}")
     public String viewItemForm(@PathVariable (value = "id") Long id, Model model) {
         //get item from the service
         Item item = itemService.getItemById(id);
@@ -67,8 +52,8 @@ public class ItemController {
         return "view_item";
     }
 
-    //delete an item by id
-    @RequestMapping("/deleteItem/{id}")
+    // Delete an item by id
+    @RequestMapping("/delete/{id}")
     public String deleteItem(@PathVariable (value = "id") Long id) {
         //call delete item method
         this.itemService.deleteItemById(id);
