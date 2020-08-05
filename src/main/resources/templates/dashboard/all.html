@@ -56,9 +56,9 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">Add</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" th:href="@{/addNewItemForm}">Item</a>
-            <a class="dropdown-item" th:href="@{/addNewCategoryForm}">Category</a>
-            <a class="dropdown-item" th:href="@{/addNewShoppingForm}">Shopping list</a>
+            <a class="dropdown-item" th:href="@{/add}">Item</a>
+            <a class="dropdown-item" th:href="@{/category/add}">Category</a>
+            <a class="dropdown-item" th:href="@{/shopList/add}">Shopping list</a>
           </div>
         </li>
         <li class="nav-item">
@@ -91,7 +91,7 @@
         <a class="nav-link" href="#" th:text = "${category.name}"></a>
       </div>
       <div class="mt-1">
-        <a th:href = "@{/addNewCategoryForm}" class="btn btn-sm" title="Add new category">
+        <a th:href = "@{/category/add}" class="btn btn-sm" title="Add new category">
           <img src="../assets/brand/add-grey.svg" width="20" class=""></a>
       </div>
 
@@ -118,7 +118,7 @@
             <h5>All items</h5>
           </div>
           <div class="col-4 text-right">
-            <a th:href = "@{/addNewItemForm}" class="btn btn-sm" title="Add new item">
+            <a th:href = "@{/add}" class="btn btn-sm" title="Add new item">
               <img src="../assets/brand/add-grey.svg" width="20" class="align-top"></a>
           </div>
         </div>
@@ -186,11 +186,11 @@
           <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
           <a th:text = "${item.expirationDate}"></a>
           <div>
-            <a th:href = "@{/viewItemForm/{id}(id=${item.id})}" class="btn btn-sm mb-3" title="View item">
+            <a th:href = "@{/view/{id}(id=${item.id})}" class="btn btn-sm mb-3" title="View item">
               <img src="../assets/brand/view-grey.svg" width="20"></a>
-            <a th:href = "@{/updateItemForm/{id}(id=${item.id})}" class="btn btn-sm mb-3" title="Edit item">
+            <a th:href = "@{/edit/{id}(id=${item.id})}" class="btn btn-sm mb-3" title="Edit item">
               <img src="../assets/brand/edit-grey.svg" width="20"></a>
-            <a th:href = "@{/deleteItem/{id}(id=${item.id})}" class="btn btn-sm mb-3" title="Delete item">
+            <a th:href = "@{/delete/{id}(id=${item.id})}" class="btn btn-sm mb-3" title="Delete item">
               <img src="../assets/brand/delete-grey.svg" width="20"></a>
           </div>
         </p>
@@ -210,9 +210,15 @@
   </footer>
   <!-- End Footer -->
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+          crossorigin="anonymous"></script>
 
 </body>
 </html>

@@ -54,9 +54,9 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">Add</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" th:href="@{/addNewItemForm}">Item</a>
-            <a class="dropdown-item active" th:href="@{/addNewCategoryForm}">Category</a>
-            <a class="dropdown-item" th:href="@{/addNewShoppingForm}">Shopping list</a>
+            <a class="dropdown-item" th:href="@{/add}">Item</a>
+            <a class="dropdown-item" th:href="@{/category/add}">Category</a>
+            <a class="dropdown-item" th:href="@{/shopList/add}">Shopping list</a>
           </div>
         </li>
         <li class="nav-item">
@@ -87,7 +87,7 @@
       </div>
 
       <div>
-        <form action="#" th:action="@{/addNewCategory}" th:object="${category}" method="POST">
+        <form action="#" th:action="@{/category/save}" th:object="${category}" method="POST">
           <div class="mb-3">
             <label for="categoryName">Name*</label>
             <input type="text" th:field="*{name}" placeholder="Category Name" class="form-control"
@@ -131,9 +131,15 @@
   </footer>
   <!-- End Footer -->
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+          integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+          crossorigin="anonymous"></script>
 
 </body>
 </html>
