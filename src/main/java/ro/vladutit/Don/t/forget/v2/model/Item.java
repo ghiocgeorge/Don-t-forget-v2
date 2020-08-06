@@ -4,16 +4,14 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table (name = "Items")
+@Table (name = "Item")
 public class Item {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
-
     private Long codeBarId;
     private String name;
     private String description;
-    //Todo: de schimbat tipul din string in date
     private String expirationDate;
 
     @ManyToOne
@@ -72,13 +70,10 @@ public class Item {
         this.description = description;
     }
 
-    //todo: de schimbat din string in date
     public String getExpirationDate() {
         return expirationDate;
     }
 
-    //todo: de primit un date si facut treaba cu exceptiile de format de data
-    // sau de primit in continuare un string dar de transformat in format de data
     public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }

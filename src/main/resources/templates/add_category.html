@@ -1,83 +1,10 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link rel="shortcut icon" type='image/x-icon' href="/favicon/favicon.ico">
-  <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon/favicon.ico">
-  <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-192.png">
-  <link rel="icon" type="image/png" sizes="160x160" href="/favicon/favicon-160.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96.png">
-  <link rel="icon" type="image/png" sizes="64x64" href="/favicon/favicon-64.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png">
-  <link rel="apple-touch-icon" href="/favicon/favicon-57.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/favicon/favicon-114.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/favicon/favicon-72.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/favicon/favicon-144.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/favicon/favicon-60.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/favicon/favicon-120.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/favicon/favicon-76.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/favicon/favicon-152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/favicon-180.png">
-  <meta name="msapplication-TileColor" content="#FFFFFF">
-  <meta name="msapplication-TileImage" content="/favicon/favicon-144.png">
-  <meta name="msapplication-config" content="/favicon/browserconfig.xml">
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Don't forget · Vladut IT</title>
-
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-  <!-- Custom styles for this template -->
-  <link href="../assets/css/offcanvas.css" rel="stylesheet">
+  <div th:replace="fragments/header :: header"></div>
 </head>
 <body class="bg-light">
-  <!-- Start Principal menu -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <a class="navbar-brand mr-auto mr-lg-4" href="/">
-      <img src="../assets/brand/logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""
-           loading="lazy">Don't forget </a>
-    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">Add</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" th:href="@{/addNewItemForm}">Item</a>
-            <a class="dropdown-item active" th:href="@{/addNewCategoryForm}">Category</a>
-            <a class="dropdown-item" th:href="@{/addNewShoppingForm}">Shopping list</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Notifications</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Statistics</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-      <div class=" my-2 my-lg-0">
-        <a class="btn btn-outline-warning btn-sm" href="#">Sign out</a>
-      </div>
-    </div>
-  </nav>
-  <!-- End Principal menu -->
+  <div th:replace="fragments/menu :: mainMenu"></div>
 
   <!-- Start main container -->
   <main>
@@ -87,7 +14,7 @@
       </div>
 
       <div>
-        <form action="#" th:action="@{/addNewCategory}" th:object="${category}" method="POST">
+        <form action="#" th:action="@{/category/save}" th:object="${category}" method="POST">
           <div class="mb-3">
             <label for="categoryName">Name*</label>
             <input type="text" th:field="*{name}" placeholder="Category Name" class="form-control"
@@ -120,20 +47,7 @@
   </main>
   <!-- End main container -->
 
-  <!-- Start Footer -->
-  <footer class="mastfoot mt-auto text-center">
-    <div class="inner">
-      <p>© 2020
-        <a target="_blank" href="https://www.vladutit.ro">Vladut IT</a>.
-        <a href="#" class="ml-4" title="TO TOP"><img src="../assets/brand/up.svg" width="20"></a>
-      </p>
-    </div>
-  </footer>
-  <!-- End Footer -->
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <div th:replace="fragments/footer :: footer"></div>
 
 </body>
 </html>
