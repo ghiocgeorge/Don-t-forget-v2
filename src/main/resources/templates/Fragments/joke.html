@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<body>
+    <div th:fragment = "jokeCard" th:remove = "tag">
+        <!-- Sad face, with text how many items have expired and been thrown away, ask for a joke through the API -->
+        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-danger rounded shadow-sm">
+            <img class="mr-3" src="../assets/brand/sad-white.svg" alt="" width="48" height="48">
+            <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100">You waste 5 items this month.</h6>
+                <small>You are sad because you waste to much?</small><br>
+                <a  class="mb-0 text-white lh-50 small" href="#">Read a joke</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
