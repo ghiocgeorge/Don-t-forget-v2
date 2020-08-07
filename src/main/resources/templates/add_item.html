@@ -16,11 +16,25 @@
       <div>
         <form action="#" th:action="@{/save}" th:object="${item}" method="POST">
           <div class="mb-3">
+            <label>First of all, please select/add a category: * </label>
+            <div class="form-group">
+              <select class="form-control selectpicker" required th:field="*{category.name}">
+                <option value="">Nothing selected</option>
+                <option th:each="category : ${listCategories}"
+                        th:value="${category.name}"
+                        th:text="${category.name}">
+                </option>
+              </select>
+            </div>
+            <label>Didn't find the category you were looking for?</label>
+            <a type="button" class="btn btn-light" href="/category/add">Add new category</a>
+          </div>
+            <hr class="mb-4">
+          <div class="mb-3">
             <label for="itemBarcode">Barcode</label>
             <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
                    id="itemBarcode" value="">
           </div>
-
           <div class="mb-3">
             <label for="itemName">Name*</label>
             <input type="text" th:field="*{name}" placeholder="Item Name" class="form-control"
