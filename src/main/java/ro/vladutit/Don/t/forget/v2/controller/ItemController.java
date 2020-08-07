@@ -8,6 +8,8 @@ import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 import ro.vladutit.Don.t.forget.v2.service.ItemService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller ("/item")
 public class ItemController {
     @Autowired
@@ -24,9 +26,10 @@ public class ItemController {
     }
 
     @RequestMapping("/add")
-    public String addNewItemForm(Model model) {
+    public String addNewItemForm(Model model, Model category) {
         Item item = new Item();
         model.addAttribute("item", item);
+        category.addAttribute("listCategories", categoryService.getAllCategories());
         return "add_item";
     }
 
