@@ -8,8 +8,6 @@ import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 import ro.vladutit.Don.t.forget.v2.service.ItemService;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller ("/item")
 public class ItemController {
     @Autowired
@@ -34,23 +32,24 @@ public class ItemController {
     }
 
     // Update an item by id
-    @RequestMapping("/edit/{id}")
-    public String updateItemForm(@PathVariable (value = "id") Long id, Model model) {
-        //get item from the service
+    @GetMapping("/edit/{id}")
+    public String updateItemForm(@PathVariable (value = "id") Long id, Model model, Model category) {
+        // Get item from the service
         Item item = itemService.getItemById(id);
 
-        //set item as a model attribute to pre-populate the form
+        // Set item as a model attribute to pre-populate the form
         model.addAttribute("item", item);
+        category.addAttribute("listCategories", categoryService.getAllCategories());
         return "update_item";
     }
 
     // Display an item by id
-    @RequestMapping("/view/{id}")
+    @GetMapping("/view/{id}")
     public String viewItemForm(@PathVariable (value = "id") Long id, Model model) {
-        //get item from the service
+        // Get item from the service
         Item item = itemService.getItemById(id);
 
-        //set item as a model attribute for view form
+        // Set item as a model attribute for view form
         model.addAttribute("item", item);
         return "view_item";
     }
@@ -58,7 +57,6 @@ public class ItemController {
     // Delete an item by id
     @RequestMapping("/delete/{id}")
     public String deleteItem(@PathVariable (value = "id") Long id) {
-        //call delete item method
         this.itemService.deleteItemById(id);
         return "redirect:/all";
     }
