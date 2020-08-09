@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <div th:replace="fragments/header :: header"></div>
+  <div th:replace="fragments/header :: header" th:remove = "tag"></div>
 </head>
 <body class="bg-light">
-  <div th:replace="fragments/menu :: mainMenu"></div>
-  <div th:replace="fragments/menu :: dashboardMenu"></div>
+<!--  <div th:replace="fragments/menu :: mainMenu"></div>-->
+<!--  <div th:replace="fragments/menu :: dashboardMenu"></div>-->
 
   <main role="main" class="container">
-    <div th:replace="fragments/joke :: jokeCard"></div>
+<!--    <div th:replace="fragments/joke :: jokeCard"></div>-->
 
     <!-- Start items box -->
     <div class="my-3 p-3 bg-white rounded shadow-sm">
@@ -131,7 +131,7 @@
     <!-- End Shopping List -->
   </main>
 
-  <div th:replace="fragments/footer :: footer"></div>
+<!--  <div th:replace="fragments/footer :: footer"></div>-->
 
 </body>
 </html>
