@@ -14,6 +14,11 @@ public class DashboardController {
     @Autowired
     public CategoryService categoryService;
 
+    @RequestMapping("/")
+    public String index() {
+        return "index";
+    }
+
     @RequestMapping("/dashboard")
     public String viewDashboard(Model category) {
         category.addAttribute("listCategories", categoryService.getAllCategories());
