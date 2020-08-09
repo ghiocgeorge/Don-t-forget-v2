@@ -31,7 +31,7 @@
 
           <div class="mb-3">
             <label for="itemDescription">Description</label>
-            <input type="text" th:field="*{description}" placeholder="Product Description" class="form-control"
+            <input type="text" th:field="*{description}" placeholder="Description" class="form-control"
                    id="itemDescription">
           </div>
 
@@ -39,6 +39,21 @@
             <label for="itemExpirationDate">Expiration Date</label>
             <input type="date" th:field="*{expirationDate}" placeholder="YYYY-MM-DD" class="form-control"
                    id="itemExpirationDate">
+          </div>
+
+          <div class="mb-3">
+            <label>Category </label>
+            <div class="form-group">
+              <select class="form-control selectpicker" required th:field="*{category.name}">
+                <option value="">Nothing selected</option>
+                <option th:each="category : ${listCategories}"
+                        th:value="${category.name}"
+                        th:text="${category.name}">
+                </option>
+              </select>
+            </div>
+            <label>Didn't find the category you were looking for?</label>
+            <a type="button" class="btn btn-light" href="/category/add">Add new category</a>
           </div>
 
           <hr class="mb-4">

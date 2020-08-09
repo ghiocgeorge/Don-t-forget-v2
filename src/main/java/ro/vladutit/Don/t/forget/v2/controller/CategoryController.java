@@ -3,9 +3,7 @@ package ro.vladutit.Don.t.forget.v2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ro.vladutit.Don.t.forget.v2.model.Category;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 
@@ -27,6 +25,18 @@ public class CategoryController {
     public String addnewCategory(@ModelAttribute("category") Category category) {
         categoryService.addCategory(category);
         return "redirect:/all";
+    }
+
+    // Update an category by name
+    @GetMapping("/category/{id}")
+    public String updateItemForm(@PathVariable(value = "id") String name, Model model) {
+        // Get category from the service
+        Category category = categoryService.getCateboryByName(name);
+        System.out.println("Categorie id: " + name);
+
+        // Set category as a model attribute to pre-populate the form
+        model.addAttribute("category", category);
+        return "update_category";
     }
 
 }

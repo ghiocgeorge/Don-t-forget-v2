@@ -6,6 +6,7 @@ import ro.vladutit.Don.t.forget.v2.model.Category;
 import ro.vladutit.Don.t.forget.v2.repository.CategoryRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -19,5 +20,16 @@ public class CategoryService {
 
     public void addCategory (Category category) {
         categoryRepository.save(category);
+    }
+
+    public Category getCateboryByName(String name) {
+        Optional<Category> optional = categoryRepository.findById(name);
+        Category category = null;
+        if(optional.isPresent()) {
+            category = optional.get();
+        } else {
+            throw new RuntimeException("Category not found for: " + name);
+        }
+        return category;
     }
 }
