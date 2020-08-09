@@ -94,6 +94,35 @@
     </div>
     <!-- End items box -->
 
+    <!-- Start categories box -->
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <div class="border-bottom border-gray pb-2 mb-0">
+        <div class="row justify-content-between">
+          <div class="col align-middle">
+            <h5>Categories</h5>
+          </div>
+          <div class="col-4 text-right">
+            <a th:href = "@{/category/add}" class="btn btn-sm" title="Add new category">
+              <img src="../assets/brand/add-grey.svg" width="20" class="align-top"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="media text-muted pt-3" th:each = "category : ${listCategories}">
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
+          <strong class="d-block text-gray-dark" th:text = "${category.name}"></strong>
+          <span th:text = "${category.description}?: '(no description)'">No description</span>
+        <div>
+          <a th:href = "@{/category/{id}(id=${category.name})}" class="btn btn-sm mb-3" title="Edit category">
+            <img src="../assets/brand/edit-grey.svg" width="20"></a>
+          <a href = "#" class="btn btn-sm mb-3" title="Delete category">
+            <img src="../assets/brand/delete-grey.svg" width="20"></a>
+        </div>
+        </p>
+      </div>
+    </div>
+    <!-- End categories box -->
+
     <!-- Start Shopping List -->
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <h6 class="border-bottom border-gray pb-2 mb-0">Shopping List</h6>
