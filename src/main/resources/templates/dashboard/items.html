@@ -15,7 +15,7 @@
       <div class="border-bottom border-gray pb-2 mb-0">
         <div class="row justify-content-between">
           <div class="col-8 align-middle">
-            <h5 th:text="'Items from ' + ${title}"></h5>
+            <h5 th:text="'Items from ' + ${title.name}"></h5>
           </div>
           <div class="col-4 text-right">
             <a th:href = "@{/add}" class="btn btn-sm" title="Add new item">

@@ -22,14 +22,15 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
-    public Category getCateboryByName(String name) {
-        Optional<Category> optional = categoryRepository.findById(name);
+    public Category getCategoryById(Long id) {
+        Optional<Category> optional = categoryRepository.findById(id);
         Category category = null;
         if(optional.isPresent()) {
             category = optional.get();
         } else {
-            throw new RuntimeException("Category not found for: " + name);
+            throw new RuntimeException("Category not found for: " + id);
         }
         return category;
     }
+
 }

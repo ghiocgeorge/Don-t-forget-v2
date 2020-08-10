@@ -1,23 +1,41 @@
 package ro.vladutit.Don.t.forget.v2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import net.bytebuddy.implementation.bind.annotation.Default;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table (name = "Category")
 public class Category {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @NotNull
+    @Size(min = 3, max = 20, message = "The category name must be {min} to {max} characters in length!")
+    @Column(unique = true)
     private String name;
-    private String description;
+    private String description = "No description";
 
     public Category() {
 
     }
 
-    public Category(String name, String description) {
+    public Category(Long id, String name, String description) {
+        this.id = id;
         this.name = name;
-        this.description = description;
+        if(!description.equals("")) {
+            this.description = description;
+        }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

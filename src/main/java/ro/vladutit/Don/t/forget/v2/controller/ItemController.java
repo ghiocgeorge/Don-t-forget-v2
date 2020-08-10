@@ -3,15 +3,18 @@ package ro.vladutit.Don.t.forget.v2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 import ro.vladutit.Don.t.forget.v2.service.ItemService;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 
 @Controller ("/item")
-public class ItemController {
+public class ItemController implements WebMvcConfigurer {
     @Autowired
     private ItemService itemService;
 
@@ -20,7 +23,11 @@ public class ItemController {
 
     // Add new item
     @PostMapping("/save")
-    public String addNewItem(@ModelAttribute("item") Item item) {
+    public String addNewItem(@Valid @ModelAttribute("item") Item item, BindingResult bindingResult, Model category) {
+        if (bindingResult.hasErrors()) {
+            category.addAttribute("listCategories", categoryService.getAllCategories());
+            return "add_item";
+        }
         itemService.addItem(item);
         return "redirect:/all";
     }

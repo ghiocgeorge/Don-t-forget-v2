@@ -79,7 +79,7 @@
                 <a class="nav-link" href="/all">All items</a>
                 <a class="nav-link" href="#">Expired</a>
                 <div th:each = "category : ${listCategories}">
-                    <a class="nav-link" th:href="@{/items/{categoryName}(categoryName=${category.name})}"
+                    <a class="nav-link" th:href="@{/items/{categoryId}(categoryId=${category.id})}"
                        th:text = "${category.name}"></a>
                 </div>
                 <div class="mt-1">

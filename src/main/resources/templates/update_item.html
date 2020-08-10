@@ -27,6 +27,7 @@
             <label for="itemName">Name</label>
             <input type="text" th:field="*{name}" placeholder="Name" class="form-control"
                    id="itemName" value="">
+            <div class="alert alert-danger my-3" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
           </div>
 
           <div class="mb-3">
@@ -44,10 +45,10 @@
           <div class="mb-3">
             <label>Category </label>
             <div class="form-group">
-              <select class="form-control selectpicker" required th:field="*{category.name}">
+              <select class="form-control selectpicker" required th:field="*{category.id}">
                 <option value="">Nothing selected</option>
                 <option th:each="category : ${listCategories}"
-                        th:value="${category.name}"
+                        th:value="${category.id}"
                         th:text="${category.name}">
                 </option>
               </select>

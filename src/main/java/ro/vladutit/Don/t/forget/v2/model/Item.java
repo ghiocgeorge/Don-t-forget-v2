@@ -1,7 +1,8 @@
 package ro.vladutit.Don.t.forget.v2.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table (name = "Item")
@@ -10,8 +11,11 @@ public class Item {
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
     private Long codeBarId;
+    @NotNull
+    @Size(min = 3, max = 40, message = "The item name must be {min} to {max} characters in length!")
     private String name;
-    private String description;
+    private String description = "No description";
+    @NotNull
     private String expirationDate;
 
     @ManyToOne
@@ -21,13 +25,15 @@ public class Item {
 
     }
 
-    public Item(Long codeBarId, String name, String description, String expirationDate, 
+    public Item(Long codeBarId, String name, String description, String expirationDate, Long categoryId,
                 String categoryName, String categoryDescription) {
         this.codeBarId = codeBarId;
         this.name = name;
-        this.description = description;
+        if(!description.equals("")) {
+            this.description = description;
+        }
         this.expirationDate = expirationDate;
-        this.category = new Category(categoryName, categoryDescription);
+        this.category = new Category(categoryId, categoryName, categoryDescription);
     }
 
     public Category getCategory() {

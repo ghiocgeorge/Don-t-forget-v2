@@ -74,23 +74,23 @@
       </div>
       <!-- End example box-->
 
-      <div class="media text-muted pt-3" th:each = "item : ${listProducts}">
-        <div >
-          <img class="mr-3" src="../assets/brand/meh.svg" alt="Meh" width="35" height="35">
-        </div>
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
-          <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
-          <a th:text = "${item.expirationDate}"></a>
-          <div>
-            <a href = "#" class="btn btn-sm mb-3" title="View item">
-              <img src="../assets/brand/view-grey.svg" width="20"></a>
-            <a href = "#" class="btn btn-sm mb-3" title="Edit item">
-              <img src="../assets/brand/edit-grey.svg" width="20"></a>
-            <a href = "#" class="btn btn-sm mb-3" title="Delete item">
-              <img src="../assets/brand/delete-grey.svg" width="20"></a>
-          </div>
-        </p>
-      </div>
+<!--      <div class="media text-muted pt-3" th:each = "item : ${listProducts}">-->
+<!--        <div >-->
+<!--          <img class="mr-3" src="../assets/brand/meh.svg" alt="Meh" width="35" height="35">-->
+<!--        </div>-->
+<!--        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >-->
+<!--          <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>-->
+<!--          <a th:text = "${item.expirationDate}"></a>-->
+<!--          <div>-->
+<!--            <a href = "#" class="btn btn-sm mb-3" title="View item">-->
+<!--              <img src="../assets/brand/view-grey.svg" width="20"></a>-->
+<!--            <a href = "#" class="btn btn-sm mb-3" title="Edit item">-->
+<!--              <img src="../assets/brand/edit-grey.svg" width="20"></a>-->
+<!--            <a href = "#" class="btn btn-sm mb-3" title="Delete item">-->
+<!--              <img src="../assets/brand/delete-grey.svg" width="20"></a>-->
+<!--          </div>-->
+<!--        </p>-->
+<!--      </div>-->
     </div>
     <!-- End items box -->
 
@@ -113,7 +113,7 @@
           <strong class="d-block text-gray-dark" th:text = "${category.name}"></strong>
           <span th:text = "${category.description}?: '(no description)'">No description</span>
         <div>
-          <a th:href = "@{/category/{id}(id=${category.name})}" class="btn btn-sm mb-3" title="Edit category">
+          <a th:href = "@{/category/{id}(id=${category.id})}" class="btn btn-sm mb-3" title="Edit category">
             <img src="../assets/brand/edit-grey.svg" width="20"></a>
           <a href = "#" class="btn btn-sm mb-3" title="Delete category">
             <img src="../assets/brand/delete-grey.svg" width="20"></a>

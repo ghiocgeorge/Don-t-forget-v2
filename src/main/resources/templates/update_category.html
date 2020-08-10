@@ -15,14 +15,12 @@
 
       <div>
         <form action="#" th:action="@{/category/save}" th:object="${category}" method="POST">
-          <input type="hidden" th:field="*{name}">
+          <input type="hidden" th:field="*{id}">
           <div class="mb-3">
             <label for="itemName">Name</label>
-            <a type="text" th:text="*{name}" placeholder="Name" class="form-control"
-               id="itemName" value=""></a>
-            <small id="itemNameBlock" class="form-text text-muted">
-              The name cannot be changed, because it is unique.
-            </small>
+            <input type="text" th:field="*{name}" placeholder="Name" class="form-control"
+               id="itemName" value="" required></input>
+            <div class="alert alert-danger my-3" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
           </div>
 
           <div class="mb-3">

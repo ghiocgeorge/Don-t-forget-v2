@@ -3,12 +3,9 @@ package ro.vladutit.Don.t.forget.v2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ro.vladutit.Don.t.forget.v2.model.Category;
-import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 import ro.vladutit.Don.t.forget.v2.service.ItemService;
 
@@ -39,14 +36,16 @@ public class DashboardController {
         return "dashboard/all";
     }
 
-    @RequestMapping("/items/{categoryName}")
+    @RequestMapping("/items/{categoryId}")
     public String viewItemsByCategory(
-            @PathVariable(value = "categoryName") String categoryName,
+            @PathVariable(value = "categoryId") Long categoryId,
             Model item,
-            ModelMap category) {
-        item.addAttribute("listItems", itemService.getByCategoryName(categoryName));
+            Model category,
+            Model categoryTitle) {
+        item.addAttribute("listItems", itemService.getByCategoryId(categoryId));
         category.addAttribute("listCategories", categoryService.getAllCategories());
-        category.addAttribute("title", categoryName);
+        Category title = categoryService.getCategoryById(categoryId);
+        categoryTitle.addAttribute("title", title);
         return "dashboard/items";
     }
 }

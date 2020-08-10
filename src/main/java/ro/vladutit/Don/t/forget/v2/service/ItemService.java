@@ -37,7 +37,7 @@ public class ItemService {
         itemRepository.deleteById(id);
     }
 
-    public List<Item> getByCategoryName(String categoryName){
-        return itemRepository.getByCategoryName(categoryName);
+    public List<Item> getByCategoryId(Long categoryId){
+        return itemRepository.getByCategoryId(categoryId);
     }
 }

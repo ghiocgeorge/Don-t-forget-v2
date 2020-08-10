@@ -19,6 +19,7 @@
             <label for="categoryName">Name*</label>
             <input type="text" th:field="*{name}" placeholder="Category Name" class="form-control"
                    id="categoryName" value="" required>
+            <div class="alert alert-danger my-3" role="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
           </div>
 
           <div class="mb-3">
