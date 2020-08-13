@@ -1,5 +1,8 @@
 package ro.vladutit.Don.t.forget.v2.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,6 +22,7 @@ public class Item {
     private String expirationDate;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     public Category category;
 
     public Item() {

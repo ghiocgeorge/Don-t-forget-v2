@@ -1,7 +1,5 @@
 package ro.vladutit.Don.t.forget.v2.model;
 
-import net.bytebuddy.implementation.bind.annotation.Default;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

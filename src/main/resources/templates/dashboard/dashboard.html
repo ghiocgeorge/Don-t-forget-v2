@@ -17,6 +17,10 @@
           <div class="col align-middle">
             <h5>Goind to expire in next days</h5>
           </div>
+          <div class="col-4 text-right">
+            <a th:href = "@{/add}" class="btn btn-sm" title="Add new item">
+              <img src="../assets/brand/add-grey.svg" width="20" class="align-top"></a>
+          </div>
         </div>
       </div>
 
@@ -73,24 +77,6 @@
         </p>
       </div>
       <!-- End example box-->
-
-<!--      <div class="media text-muted pt-3" th:each = "item : ${listProducts}">-->
-<!--        <div >-->
-<!--          <img class="mr-3" src="../assets/brand/meh.svg" alt="Meh" width="35" height="35">-->
-<!--        </div>-->
-<!--        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >-->
-<!--          <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>-->
-<!--          <a th:text = "${item.expirationDate}"></a>-->
-<!--          <div>-->
-<!--            <a href = "#" class="btn btn-sm mb-3" title="View item">-->
-<!--              <img src="../assets/brand/view-grey.svg" width="20"></a>-->
-<!--            <a href = "#" class="btn btn-sm mb-3" title="Edit item">-->
-<!--              <img src="../assets/brand/edit-grey.svg" width="20"></a>-->
-<!--            <a href = "#" class="btn btn-sm mb-3" title="Delete item">-->
-<!--              <img src="../assets/brand/delete-grey.svg" width="20"></a>-->
-<!--          </div>-->
-<!--        </p>-->
-<!--      </div>-->
     </div>
     <!-- End items box -->
 
@@ -115,7 +101,7 @@
         <div>
           <a th:href = "@{/category/{id}(id=${category.id})}" class="btn btn-sm mb-3" title="Edit category">
             <img src="../assets/brand/edit-grey.svg" width="20"></a>
-          <a href = "#" class="btn btn-sm mb-3" title="Delete category">
+          <a th:href = "@{/categoryd/{id}(id=${category.id})}" class="btn btn-sm mb-3" title="Delete category">
             <img src="../assets/brand/delete-grey.svg" width="20"></a>
         </div>
         </p>

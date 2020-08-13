@@ -31,10 +31,10 @@ public class CategoryController implements WebMvcConfigurer {
             return "add_category";
         }
         categoryService.addCategory(category);
-        return "redirect:/all";
+        return "redirect:/dashboard";
     }
 
-    // Update an category by name
+    // Update a category by name
     @GetMapping("/category/{id}")
     public String updateItemForm(@PathVariable(value = "id") Long id, Model model) {
         // Get category from the service
@@ -43,6 +43,13 @@ public class CategoryController implements WebMvcConfigurer {
         // Set category as a model attribute to pre-populate the form
         model.addAttribute("category", category);
         return "update_category";
+    }
+
+    // Delete a category by id
+    @RequestMapping("/categoryd/{id}")
+    public String deleteItem(@PathVariable (value = "id") Long id) {
+        this.categoryService.deleteCategoryById(id);
+        return "redirect:/dashboard";
     }
 
 }
