@@ -90,7 +90,8 @@
               <img src="../assets/brand/view-grey.svg" width="20"></a>
             <a th:href = "@{/edit/{id}(id=${item.id})}" class="btn btn-sm mb-3" title="Edit item">
               <img src="../assets/brand/edit-grey.svg" width="20"></a>
-            <a th:href = "@{/delete/{id}(id=${item.id})}" class="btn btn-sm mb-3" title="Delete item">
+            <a onclick="return ConfirmDelete()" th:href = "@{/delete/{id}(id=${item.id})}"
+               class="btn btn-sm mb-3" title="Delete item">
               <img src="../assets/brand/delete-grey.svg" width="20"></a>
           </div>
         </p>
