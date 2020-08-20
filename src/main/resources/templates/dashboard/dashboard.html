@@ -46,9 +46,10 @@
           <span th:text = "${category.description}?: '(no description)'">No description</span>
         <div>
           <a th:href = "@{/category/{id}(id=${category.id})}" class="btn btn-sm mb-3" title="Edit category">
-            <img src="../assets/brand/edit-grey.svg" width="20"></a>
-          <a onclick="return ConfirmDeleteCategory()" th:href = "@{/categoryd/{id}(id=${category.id})}" class="btn btn-sm mb-3" title="Delete category">
-            <img src="../assets/brand/delete-grey.svg" width="20"></a>
+            <img src="../assets/brand/edit-grey.svg" width="20"/></a>
+          <a th:id="${category.id}" th:onclick="ConfirmDeleteCategory(id)" href=""
+               class="btn btn-sm mb-3" title="Delete category">
+            <img src="../assets/brand/delete-grey.svg" width="20"/></a>
         </div>
         </p>
       </div>

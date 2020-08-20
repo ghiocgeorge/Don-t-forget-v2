@@ -13,22 +13,58 @@
         </footer>
         <!-- End Footer -->
 
-        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
                 integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
                 crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
                 integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
                 crossorigin="anonymous"></script>
-        <script type="text/javascript">
-            function ConfirmDelete() {
-                return confirm("Are you sure you want to delete?");
+
+        <script language="javascript" type="text/javascript">
+            function ConfirmDelete(id) {
+                    var previous = document.URL;
+                    console.log(previous);
+                if (window.confirm('Are you sure you want to delete?')) {
+                    $.ajax({
+                        type : "DELETE",
+                        url : "/delete/"+ id,
+                    });
+                    location.replace(previous);
+                }
             }
         </script>
-        <script type="text/javascript">
-            function ConfirmDeleteCategory() {
-                return confirm("Are you sure you want to delete?" +
-                 "\nWhen you delete this category, all the items who belong of this category, will be delete!");
+        <script language="javascript" type="text/javascript">
+            function ConfirmDeleteFromView(id) {
+                if (window.confirm('Are you sure you want to delete?')) {
+                    console.log("sunt in if");
+                    $.ajax({
+                        type : "DELETE",
+                        url : "/delete/"+ id,
+                        success : function() {
+                            console.log("a mers");
+                            window.location.href = '/all';
+                        },
+                        error : function() {
+                            console.log("nu a mers");
+                        }
+                    });
+                }
+            }
+        </script>
+        <script language="javascript" type="text/javascript">
+            function ConfirmDeleteCategory(id) {
+                    var previous = document.URL;
+                    console.log(previous);
+                if (window.confirm('Are you sure you want to delete?' +
+                 '\nWhen you delete this category, all the items who belong of this category, will be delete!')) {
+                    $.ajax({
+                        type : "DELETE",
+                        url : "categoryd/"+ id,
+                    });
+                    console.log(previous);
+<!--                    location.reload();-->
+                    location.replace("http://localhost:8081/all");
+                }
             }
         </script>
     </div>
