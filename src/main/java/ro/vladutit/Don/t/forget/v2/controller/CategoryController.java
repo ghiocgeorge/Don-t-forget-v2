@@ -46,10 +46,10 @@ public class CategoryController implements WebMvcConfigurer {
     }
 
     // Delete a category by id
-    @RequestMapping("/categoryd/{id}")
-    public String deleteItem(@PathVariable (value = "id") Long id) {
+    @RequestMapping(value = "/category/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteItem(@PathVariable (value = "id") Long id) {
         this.categoryService.deleteCategoryById(id);
-        return "redirect:/dashboard";
     }
 
 }

@@ -64,10 +64,10 @@ public class ItemController implements WebMvcConfigurer {
     }
 
     // Delete an item by id
-    @RequestMapping("/delete/{id}")
-    public String deleteItem(@PathVariable (value = "id") Long id) {
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteItem(@PathVariable (value = "id") Long id) {
         this.itemService.deleteItemById(id);
-        return "redirect:/all";
     }
 
 }
