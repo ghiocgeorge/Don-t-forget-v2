@@ -36,4 +36,9 @@ public class CategoryService {
     public void deleteCategoryById(Long id) {
         categoryRepository.deleteById(id);
     }
+
+    public boolean getCategoryByName(String name) {
+        Optional<Category> optional = categoryRepository.findByNameIgnoreCase(name);
+        return optional.isPresent();
+    }
 }

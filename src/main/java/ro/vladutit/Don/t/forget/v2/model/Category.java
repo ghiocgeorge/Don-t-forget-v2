@@ -11,7 +11,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
-    @Size(min = 3, max = 20, message = "The category name must be {min} to {max} characters in length!")
+    @Size(min = 3, max = 20)
     @Column(unique = true)
     private String name;
     private String description = "No description";

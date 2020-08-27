@@ -34,7 +34,8 @@
             <h5>Categories</h5>
           </div>
           <div class="col-4 text-right">
-            <a th:href = "@{/category/add}" class="btn btn-sm" title="Add new category">
+            <a th:onclick="document.getElementById('add_category').style.display='block'"
+               class="btn btn-sm" title="Add new category">
               <img src="../assets/brand/add-grey.svg" width="20" class="align-top"></a>
           </div>
         </div>
@@ -93,6 +94,7 @@
     <!-- End Shopping List -->
   </main>
 
+  <div th:replace="fragments/modal :: addCategory"></div>
   <div th:replace="fragments/footer :: footer"></div>
 
 </body>

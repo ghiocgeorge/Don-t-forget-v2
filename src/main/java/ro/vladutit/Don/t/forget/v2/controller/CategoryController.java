@@ -17,21 +17,21 @@ public class CategoryController implements WebMvcConfigurer {
     @Autowired
     private CategoryService categoryService;
 
-    // Add new category
-    @RequestMapping("/category/add")
-    public String addNewCategoryForm(Model model) {
-        Category category = new Category();
-        model.addAttribute("category", category);
-        return "add_category";
-    }
-
+    // Save category from html page form
     @PostMapping("/category/save")
     public String addnewCategory(@Valid @ModelAttribute("category") Category category, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "add_category";
+            return "update_category";
         }
         categoryService.addCategory(category);
         return "redirect:/dashboard";
+    }
+
+    // Save category from modal form
+    @PostMapping("/category/modal/save")
+    public String addNew(Category category) {
+        categoryService.addCategory(category);
+        return "back";
     }
 
     // Update a category by name
@@ -39,7 +39,6 @@ public class CategoryController implements WebMvcConfigurer {
     public String updateItemForm(@PathVariable(value = "id") Long id, Model model) {
         // Get category from the service
         Category category = categoryService.getCategoryById(id);
-
         // Set category as a model attribute to pre-populate the form
         model.addAttribute("category", category);
         return "update_category";
@@ -52,4 +51,10 @@ public class CategoryController implements WebMvcConfigurer {
         this.categoryService.deleteCategoryById(id);
     }
 
+    // Check if the name already exist in DB and return 0 or 1
+    @GetMapping("/categories/{name}")
+    @ResponseBody
+    public boolean checkCategoryName(@PathVariable(value = "name") String name) {
+        return categoryService.getCategoryByName(name);
+    }
 }

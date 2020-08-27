@@ -22,7 +22,10 @@ public class DashboardController {
     }
 
     @RequestMapping("/dashboard")
-    public String viewDashboard(Model category) {
+    public String viewDashboard(
+            Model category,
+            Model model) {
+        model.addAttribute("category", new Category());
         category.addAttribute("listCategories", categoryService.getAllCategories());
         return "dashboard/dashboard";
     }
@@ -30,7 +33,9 @@ public class DashboardController {
     @RequestMapping("/all")
     public String viewDashboardAll(
             Model item,
-            Model category) {
+            Model category,
+            Model model) {
+        model.addAttribute("category", new Category());
         item.addAttribute("listItems", itemService.getAllItems());
         category.addAttribute("listCategories", categoryService.getAllCategories());
         return "dashboard/all";
@@ -41,7 +46,9 @@ public class DashboardController {
             @PathVariable(value = "categoryId") Long categoryId,
             Model item,
             Model category,
-            Model categoryTitle) {
+            Model categoryTitle,
+            Model model) {
+        model.addAttribute("category", new Category());
         item.addAttribute("listItems", itemService.getByCategoryId(categoryId));
         category.addAttribute("listCategories", categoryService.getAllCategories());
         Category title = categoryService.getCategoryById(categoryId);

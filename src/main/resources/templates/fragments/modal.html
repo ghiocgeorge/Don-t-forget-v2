@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<body>
+<div th:fragment="addCategory">
+    <!-- Start Add Categpory -->
+    <div id="add_category" class="modal">
+        <form th:action="@{/category/modal/save}" th:object="${category}" method="POST" id="newCategory">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="add_category_title">Add new category</h5>
+                        <button th:onclick="document.getElementById('add_category').style.display='none'" type="button"
+                            class="close"><span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="categoryName" class="col-form-label">Name*:</label>
+                            <input type="text" class="form-control" th:field="*{name}" placeholder="Category Name"
+                                id="categoryName"/>
+                            <div class="alert alert-danger my-3" role="alert" id="errorCategory">
+                                Required field! Please type something!</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryDescription" class="col-form-label"> Description:
+                                <span class="text-muted">(Optional)</span></label>
+                            <input type="text" th:field="*{description}" placeholder="Category Description"
+                                class="form-control" id="categoryDescription"/>
+                        </div>
+                        <span id="helpBlock" class="help-block">* This fields are required.</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="saveCategory" class="btn btn-outline-warning btn-lg btn-block"
+                            disabled>Save</button>
+                        <button th:onclick="document.getElementById('add_category').style.display='none'" type="button"
+                            class="btn btn-danger btn-lg btn-block">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- End Add Category -->
+</div>
+</body>
+</html>

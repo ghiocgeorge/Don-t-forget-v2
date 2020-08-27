@@ -83,8 +83,8 @@
                        th:text = "${category.name}"></a>
                 </div>
                 <div class="mt-1">
-                    <a th:href = "@{/category/add}" class="btn btn-sm" title="Add new category">
-                        <img src="../assets/brand/add-grey.svg" width="20" class=""></a>
+                    <a th:onclick="document.getElementById('add_category').style.display='block'" class="btn btn-sm"
+                       title="Add new category"><img src="../assets/brand/add-grey.svg" width="20" class=""></a>
                 </div>
             </nav>
         </div>
