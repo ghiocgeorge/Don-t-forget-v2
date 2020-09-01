@@ -2,7 +2,6 @@ package ro.vladutit.Don.t.forget.v2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,31 +16,18 @@ public class CategoryController implements WebMvcConfigurer {
     @Autowired
     private CategoryService categoryService;
 
-    // Save category from html page form
+    // Save category
     @PostMapping("/category/save")
-    public String addnewCategory(@Valid @ModelAttribute("category") Category category, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "update_category";
-        }
-        categoryService.addCategory(category);
-        return "redirect:/dashboard";
-    }
-
-    // Save category from modal form
-    @PostMapping("/category/modal/save")
     public String addNew(Category category) {
         categoryService.addCategory(category);
         return "back";
     }
 
-    // Update a category by name
+    // Get a specific category information by id
     @GetMapping("/category/{id}")
-    public String updateItemForm(@PathVariable(value = "id") Long id, Model model) {
-        // Get category from the service
-        Category category = categoryService.getCategoryById(id);
-        // Set category as a model attribute to pre-populate the form
-        model.addAttribute("category", category);
-        return "update_category";
+    @ResponseBody
+    public Category getCategory(@PathVariable(value = "id") Long id) {
+        return categoryService.getCategoryById(id);
     }
 
     // Delete a category by id
