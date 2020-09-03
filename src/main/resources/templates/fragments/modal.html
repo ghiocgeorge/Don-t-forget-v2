@@ -15,11 +15,11 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="categoryName" class="col-form-label">Name*:</label>
+                            <label for="categoryName" class="col-form-label">Name: *</label>
                             <input type="text" class="form-control" th:field="*{name}" placeholder="Category Name"
                                 id="categoryName"/>
-                            <div class="alert alert-danger my-3" role="alert" id="errorAddCategory">
-                                Required field! Please type something!</div>
+                            <div class="alert alert-danger my-3" role="alert" style="display : none"
+                                 id="errorAddCategory"></div>
                         </div>
                         <div class="form-group">
                             <label for="categoryDescription" class="col-form-label"> Description:
@@ -27,7 +27,8 @@
                             <input type="text" th:field="*{description}" placeholder="Category Description"
                                 class="form-control" id="categoryDescription"/>
                         </div>
-                        <span id="helpBlock" class="help-block">* This fields are required.</span>
+                        <hr class="mt-4">
+                        <span class="help-block text-danger">Fields marked with * are required.</span>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="submitAddCategory" class="btn btn-outline-warning btn-lg btn-block"
@@ -56,7 +57,7 @@
                     <div class="modal-body">
                         <input type="hidden" th:field="*{id}" id="categoryId">
                         <div class="form-group">
-                            <label for="categoryName" class="col-form-label">Name*:</label>
+                            <label for="categoryName" class="col-form-label">Name: *</label>
                             <input type="text" class="form-control" th:field="*{name}" placeholder="Category Name"
                                 id="categoryName"/>
                             <div class="alert alert-danger my-3" role="alert" style="display : none"
@@ -68,7 +69,8 @@
                             <input type="text" th:field="*{description}" placeholder="Category Description"
                                 class="form-control" id="categoryDescription"/>
                         </div>
-                        <span id="helpBlock" class="help-block">* This fields are required.</span>
+                        <hr class="mt-4">
+                        <span class="help-block text-danger">Fields marked with * are required.</span>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="submitEditCategory"
@@ -81,6 +83,74 @@
         </form>
     </div>
     <!-- End Update Category -->
+</div>
+<div th:fragment="addItem">
+    <!-- Start Add Item -->
+    <div id="add_item" class="modal">
+        <form th:action="@{/modal/save}" th:object="${item}" method="POST" id="newItem"
+            onSubmit="return validateAddItem()">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="add_item_title">Add new item</h5>
+                        <button th:onclick="document.getElementById('add_item').style.display='none'" type="button"
+                            class="close"><span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label>First of all, please select/add a category: *</label>
+                        <div class="form-group">
+                            <select class="form-control selectpicker" th:field="*{category.id}" id="itemCategory">
+                                <option value="">Nothing selected</option>
+                                <option th:each="category : ${listCategories}"
+                                        th:value="${category.id}"
+                                        th:text="${category.name}">
+                                </option>
+                            </select>
+                            <div class="alert alert-danger my-3" role="alert" id="errorSaveSelectCategory"
+                                 style="display : none"></div>
+                        </div>
+                        <label>Didn't find the category you were looking for?</label>
+                        <a type="button" th:onclick="switchModal()" class="btn btn-outline-secondary mb-3" >
+                            Add new category</a>
+                        <div class="form-group">
+                            <label for="itemBarcode">Barcode:</label>
+                            <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
+                                id="itemBarcode">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemName">Name*:</label>
+                            <input type="text" th:field="*{name}" placeholder="Item Name" class="form-control"
+                                id="itemName">
+                            <div class="alert alert-danger my-3" role="alert" id="errorSaveItemName"
+                                 style="display : none"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemDescription">Description: <span class="text-muted">(Optional)</span></label>
+                            <input type="text" th:field="*{description}" placeholder="Item Description"
+                                class="form-control" id="itemDescription">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemExpirationDate">Expiration Date: *</label>
+                            <input type="date" th:field="*{expirationDate}" placeholder="YYYY-MM-DD"
+                                class="form-control" id="itemExpirationDate">
+                            <div class="alert alert-danger my-3" role="alert" id="errorSaveItemDate"
+                                style="display : none"></div>
+                        </div>
+                        <hr class="mt-4">
+                        <span class="help-block text-danger">Fields marked with * are required.</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="submitAddItem" class="btn btn-outline-warning btn-lg btn-block">
+                            Save</button>
+                        <button th:onclick="document.getElementById('add_item').style.display='none'" type="button"
+                            class="btn btn-danger btn-lg btn-block">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- End Add Item -->
 </div>
 </body>
 </html>

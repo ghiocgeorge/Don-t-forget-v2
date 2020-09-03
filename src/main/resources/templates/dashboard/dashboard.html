@@ -16,7 +16,8 @@
                     <h5>Goind to expire in next days</h5>
                 </div>
                 <div class="col-4 text-right">
-                    <a class="btn btn-sm" th:href="@{/add}" title="Add new item">
+                    <a class="btn btn-sm" th:onclick="document.getElementById('add_item').style.display='block'"
+                        title="Add new item">
                         <img class="align-top" src="../assets/brand/add-grey.svg" width="20"></a>
                 </div>
             </div>
@@ -65,6 +66,7 @@
 </main>
 <div th:replace="fragments/modal :: addCategory"></div>
 <div th:replace="fragments/modal :: updateCategory"></div>
+<div th:replace="fragments/modal :: addItem"></div>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

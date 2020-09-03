@@ -18,8 +18,9 @@
             <h5>All items</h5>
           </div>
           <div class="col-4 text-right">
-            <a th:href = "@{/add}" class="btn btn-sm" title="Add new item">
-              <img src="../assets/brand/add-grey.svg" width="20" class="align-top"></a>
+            <a class="btn btn-sm" th:onclick="document.getElementById('add_item').style.display='block'"
+              title="Add new item">
+              <img class="align-top" src="../assets/brand/add-grey.svg" width="20"></a>
           </div>
         </div>
       </div>
@@ -44,9 +45,8 @@
     </div>
     <!-- End All items box-->
   </main>
-
   <div th:replace="fragments/modal :: addCategory"></div>
+  <div th:replace="fragments/modal :: addItem"></div>
   <div th:replace="fragments/footer :: footer"></div>
-
 </body>
 </html>

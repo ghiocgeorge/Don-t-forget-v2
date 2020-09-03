@@ -54,7 +54,7 @@ $(document).ready(function() {
         document.getElementById("errorAddCategory").style.display = "none";
         document.getElementById("submitAddCategory").disabled = false;
         var inputName = $("#newCategory #categoryName").val();
-        if (!validateName(inputName))
+        if (!validateCategoryName(inputName))
             return errorSaveCategory("The name must be between 3 and 20 characters and contain only uppercase or " +
                 "lowercase letters, numbers, or only the '_' and '.' special characters!");
         axios.get('/categories/' + inputName)
@@ -83,7 +83,7 @@ $(document).ready(function() {
         document.getElementById("errorEditCategory").style.display = "none";
         document.getElementById("submitEditCategory").disabled = false;
         var inputName = $("#updateCategory #categoryName").val();
-        if (validateName(inputName))
+        if (!validateCategoryName(inputName))
             return errorEditCategory("The name must be between 3 and 20 characters and contain only uppercase or " +
                 "lowercase letters, numbers, or only the '_' and '.' special characters!");
         var id = $("#updateCategory #categoryId").val();
@@ -102,6 +102,11 @@ $(document).ready(function() {
     });
 });
 
+function validateCategoryName(inputName) {
+    var regex = /^[A-Za-z0-9_.]{3,20}$/g;
+    return regex.test(inputName);
+}
+
 function errorSaveCategory(message) {
     document.getElementById("submitAddCategory").disabled = true;
     document.getElementById("errorAddCategory").style.display = "block";
@@ -114,7 +119,45 @@ function errorEditCategory(message) {
     $("#updateCategory #errorEditCategory").text(message);
 }
 
-function validateName(inputName) {
-    var regex = /^[A-Za-z0-9_.]{3,20}$/g;
+function switchModal() {
+    document.getElementById('add_item').style.display='none';
+    document.getElementById('add_category').style.display='block';
+}
+
+<!-- Validate Add Item-->
+function validateAddItem() {
+    document.getElementById("errorSaveSelectCategory").style.display = "none";
+    document.getElementById("errorSaveItemName").style.display = "none";
+    document.getElementById("errorSaveItemDate").style.display = "none";
+
+    // Validate if is selected a category
+    var itemCategory = $("#newItem #itemCategory").val();
+    if (itemCategory == '' || itemCategory == null) {
+        document.getElementById("errorSaveSelectCategory").style.display = "block";
+        $("#newItem #errorSaveSelectCategory").text("Please select a category!");
+        return false;
+    }
+
+    // Validate the name
+    var inputName = $("#newItem #itemName").val();
+    if (!validateItemName(inputName)) {
+        document.getElementById("errorSaveItemName").style.display = "block";
+        $("#newItem #errorSaveItemName").text("The name must be between 3 and 20 characters and contain only " +
+            "uppercase or lowercase letters, numbers, spaces or only the '-' or '.' special characters!");
+        return false;
+    }
+
+    // Validate if is selected an expiration date
+    var itemDate = $("#newItem #itemExpirationDate").val();
+    if (itemDate == '' || itemDate == null) {
+        document.getElementById("errorSaveItemDate").style.display = "block";
+        $("#newItem #errorSaveItemDate").text("Please select an experation date!");
+        return false;
+    }
+    return true;
+}
+
+function validateItemName(inputName) {
+    var regex = /^[A-Za-z0-9-\s.]{3,20}$/g;
     return regex.test(inputName);
 }
