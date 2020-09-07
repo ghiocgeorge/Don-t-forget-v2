@@ -22,45 +22,11 @@ public class ItemController implements WebMvcConfigurer {
     @Autowired
     private CategoryService categoryService;
 
-    // Save item from html page form
-    @PostMapping("/save")
-    public String addNewItem(@Valid @ModelAttribute("item") Item item, BindingResult bindingResult, Model category) {
-        if (bindingResult.hasErrors()) {
-            category.addAttribute("listCategories", categoryService.getAllCategories());
-            return "add_item";
-        }
-        itemService.addItem(item);
-        return "redirect:/all";
-    }
-
-    // Save item from modal form
-    @PostMapping("/modal/save")
+    // Save item
+    @PostMapping("/item/save")
     public String addNew(Item item) {
         itemService.addItem(item);
         return "back";
-    }
-
-    // Update an item by id
-    @GetMapping("/edit/{id}")
-    public String updateItemForm(@PathVariable (value = "id") Long id, Model model, Model category) {
-        // Get item from the service
-        Item item = itemService.getItemById(id);
-
-        // Set item as a model attribute to pre-populate the form
-        model.addAttribute("item", item);
-        category.addAttribute("listCategories", categoryService.getAllCategories());
-        return "update_item";
-    }
-
-    // Display an item by id
-    @GetMapping("/view/{id}")
-    public String viewItemForm(@PathVariable (value = "id") Long id, Model model) {
-        // Get item from the service
-        Item item = itemService.getItemById(id);
-
-        // Set item as a model attribute for view form
-        model.addAttribute("item", item);
-        return "view_item";
     }
 
     // Delete an item by id
@@ -68,6 +34,13 @@ public class ItemController implements WebMvcConfigurer {
     @ResponseBody
     public void deleteItem(@PathVariable (value = "id") Long id) {
         this.itemService.deleteItemById(id);
+    }
+
+    // Get a specific item information by id
+    @GetMapping("/item/{id}")
+    @ResponseBody
+    public Item getItem(@PathVariable(value = "id") Long id) {
+        return itemService.getItemById(id);
     }
 
 }

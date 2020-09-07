@@ -26,9 +26,11 @@ public class DashboardController {
     public String viewDashboard(
             Model item,
             Model category,
-            Model categoryList) {
+            Model categoryList,
+            Model itemList) {
         item.addAttribute("item", new Item());
         category.addAttribute("category", new Category());
+        itemList.addAttribute("listItems", itemService.getAllItems());
         categoryList.addAttribute("listCategories", categoryService.getAllCategories());
         return "dashboard/dashboard";
     }

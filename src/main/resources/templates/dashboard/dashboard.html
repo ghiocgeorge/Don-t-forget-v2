@@ -22,6 +22,24 @@
                 </div>
             </div>
         </div>
+        <div class="media text-muted pt-3" th:each = "item : ${listItems}">
+            <div>
+                <img class="mr-3" src="../assets/brand/smile.svg" alt="Smile" width="35" height="35">
+            </div>
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
+                <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
+                <a th:text = "${item.expirationDate}"></a>
+            <div>
+                <a class="btn btn-sm mb-3" th:id="${item.id}" th:onclick="view_item(id)" title="View item">
+                    <img src="../assets/brand/view-grey.svg" width="20"></a>
+                <a class="btn btn-sm mb-3" th:id="${item.id}" th:onclick="edit_item(id)" title="Edit item">
+                    <img src="../assets/brand/edit-grey.svg" width="20"></a>
+                <a th:id="${item.id}" th:onclick="confirm_delete_item(id)"
+                    class="btn btn-sm mb-3" title="Delete item">
+                    <img src="../assets/brand/delete-grey.svg" width="20"></a>
+            </div>
+            </p>
+        </div>
     </div>
     <!-- End items box -->
     <!-- Start categories box -->
@@ -67,6 +85,8 @@
 <div th:replace="fragments/modal :: addCategory"></div>
 <div th:replace="fragments/modal :: updateCategory"></div>
 <div th:replace="fragments/modal :: addItem"></div>
+<div th:replace="fragments/modal :: updateItem"></div>
+<div th:replace="fragments/modal :: viewItem"></div>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

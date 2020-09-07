@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <body>
 <div th:fragment="addCategory">
     <!-- Start Add Categpory -->
     <div id="add_category" class="modal">
         <form th:action="@{/category/save}" th:object="${category}" method="POST" id="newCategory">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="add_category_title">Add new category</h5>
@@ -46,7 +46,7 @@
     <!-- Start Update Categpory -->
     <div id="update_category" class="modal">
         <form th:action="@{/category/save}" th:object="${category}" method="POST" id="updateCategory">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="update_category_title">Edit a category</h5>
@@ -87,7 +87,7 @@
 <div th:fragment="addItem">
     <!-- Start Add Item -->
     <div id="add_item" class="modal">
-        <form th:action="@{/modal/save}" th:object="${item}" method="POST" id="newItem"
+        <form th:action="@{/item/save}" th:object="${item}" method="POST" id="newItem"
             onSubmit="return validateAddItem()">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
@@ -98,8 +98,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <label>First of all, please select/add a category: *</label>
                         <div class="form-group">
+                            <label>First of all, please select/add a category: *</label>
                             <select class="form-control selectpicker" th:field="*{category.id}" id="itemCategory">
                                 <option value="">Nothing selected</option>
                                 <option th:each="category : ${listCategories}"
@@ -107,22 +107,22 @@
                                         th:text="${category.name}">
                                 </option>
                             </select>
-                            <div class="alert alert-danger my-3" role="alert" id="errorSaveSelectCategory"
+                            <div class="alert alert-danger my-3" role="alert" id="errorAddSelectCategory"
                                  style="display : none"></div>
                         </div>
                         <label>Didn't find the category you were looking for?</label>
-                        <a type="button" th:onclick="switchModal()" class="btn btn-outline-secondary mb-3" >
-                            Add new category</a>
+                        <a type="button" th:onclick="switchAddItemToAddCategory()"
+                            class="btn btn-outline-secondary mb-3" >Add new category</a>
                         <div class="form-group">
                             <label for="itemBarcode">Barcode:</label>
                             <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
                                 id="itemBarcode">
                         </div>
                         <div class="form-group">
-                            <label for="itemName">Name*:</label>
+                            <label for="itemName">Name: *</label>
                             <input type="text" th:field="*{name}" placeholder="Item Name" class="form-control"
                                 id="itemName">
-                            <div class="alert alert-danger my-3" role="alert" id="errorSaveItemName"
+                            <div class="alert alert-danger my-3" role="alert" id="errorAddItemName"
                                  style="display : none"></div>
                         </div>
                         <div class="form-group">
@@ -134,7 +134,7 @@
                             <label for="itemExpirationDate">Expiration Date: *</label>
                             <input type="date" th:field="*{expirationDate}" placeholder="YYYY-MM-DD"
                                 class="form-control" id="itemExpirationDate">
-                            <div class="alert alert-danger my-3" role="alert" id="errorSaveItemDate"
+                            <div class="alert alert-danger my-3" role="alert" id="errorAddItemDate"
                                 style="display : none"></div>
                         </div>
                         <hr class="mt-4">
@@ -151,6 +151,117 @@
         </form>
     </div>
     <!-- End Add Item -->
+</div>
+<div th:fragment="updateItem">
+    <!-- Start Update Item -->
+    <div id="update_item" class="modal">
+        <form th:action="@{/item/save}" th:object="${item}" method="POST" id="updateItem"
+              onSubmit="return validateUpdateItem()">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="update_item_title">Edit an item</h5>
+                        <button th:onclick="document.getElementById('update_item').style.display='none'" type="button"
+                            class="close"><span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" th:field="*{id}" id="itemId">
+                        <div class="form-group">
+                            <label>First of all, please select/add a category: *</label>
+                            <select class="form-control selectpicker" th:field="*{category.id}" id="itemCategory">
+                                <option th:each="category : ${listCategories}"
+                                        th:value="${category.id}"
+                                        th:text="${category.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <label>Didn't find the category you were looking for?</label>
+                        <a type="button" th:onclick="switchEditItemToAddCategory()"
+                            class="btn btn-outline-secondary mb-3" >Add new category</a>
+                        <div class="form-group">
+                            <label for="itemBarcode">Barcode:</label>
+                            <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
+                                   id="itemBarcode">No Barcode</input>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemName">Name: *</label>
+                            <input type="text" th:field="*{name}" placeholder="Item Name" class="form-control"
+                                id="itemName">
+                            <div class="alert alert-danger my-3" role="alert" id="errorEditItemName"
+                                style="display : none"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemDescription">Description: <span class="text-muted">(Optional)</span></label>
+                            <input type="text" th:field="*{description}" placeholder="Item Description"
+                                class="form-control" id="itemDescription">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemExpirationDate">Expiration Date: *</label>
+                            <input type="date" th:field="*{expirationDate}" placeholder="YYYY-MM-DD"
+                                class="form-control" id="itemExpirationDate">
+                            <div class="alert alert-danger my-3" role="alert" id="errorEditItemDate"
+                                style="display : none"></div>
+                        </div>
+                        <hr class="mt-4">
+                        <span class="help-block text-danger">Fields marked with * are required.</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="submitEditItem" class="btn btn-outline-warning btn-lg btn-block">
+                            Save</button>
+                        <button th:onclick="document.getElementById('update_item').style.display='none'" type="button"
+                            class="btn btn-danger btn-lg btn-block">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- End Edit Item -->
+</div>
+<div th:fragment="viewItem">
+    <!-- Start View Item -->
+    <div id="view_item" class="modal">
+        <form id="viewItem">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="view_item_title">View an item</h5>
+                        <button th:onclick="document.getElementById('view_item').style.display='none'" type="button"
+                            class="close"><span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="itemId"/>
+                        <div class="form-group">
+                            <label>Category:</label>
+                            <input readonly type="text" class="form-control" id="itemCategory"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemBarcode">Barcode:</label>
+                            <input readonly type="text" class="form-control" id="itemBarcode"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemName">Name:</label>
+                            <input readonly type="text" class="form-control" id="itemName"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemDescription">Description:</label>
+                            <input readonly type="text" class="form-control" id="itemDescription"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemExpirationDate">Expiration Date:</label>
+                            <input readonly type="date" class="form-control" id="itemExpirationDate"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button th:onclick="document.getElementById('view_item').style.display='none'" type="button"
+                            class="btn btn-danger btn-lg btn-block">Close</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- End View Item -->
 </div>
 </body>
 </html>

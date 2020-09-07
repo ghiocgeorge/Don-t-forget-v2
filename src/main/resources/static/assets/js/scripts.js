@@ -119,39 +119,101 @@ function errorEditCategory(message) {
     $("#updateCategory #errorEditCategory").text(message);
 }
 
-function switchModal() {
+function switchAddItemToAddCategory() {
     document.getElementById('add_item').style.display='none';
+    document.getElementById('add_category').style.display='block';
+}
+
+<!-- Show a item by id in view_item modal form-->
+function view_item(id) {
+    axios.get('/item/' + id)
+        .then(function (response) {
+            $("#viewItem #itemId").val(response.data.id);
+            $("#viewItem #itemCategory").val(response.data.category.name);
+            if (response.data.codeBarId == '' || response.data.codeBarId == null) {
+                $("#viewItem #itemBarcode").val("No barcode");
+            } else {
+                $("#viewItem #itemBarcode").val(response.data.codeBarId);
+            }
+            $("#viewItem #itemName").val(response.data.name);
+            $("#viewItem #itemDescription").val(response.data.description);
+            $("#viewItem #itemExpirationDate").val(response.data.expirationDate);
+        });
+    document.getElementById('view_item').style.display='block';
+}
+
+<!-- Show a item by id in update_item modal form-->
+function edit_item(id) {
+    axios.get('/item/' + id)
+        .then(function (response) {
+            $("#updateItem #itemId").val(response.data.id);
+            $("#updateItem #itemCategory").val(response.data.category.id);
+            $("#updateItem #itemBarcode").val(response.data.codeBarId);
+            $("#updateItem #itemName").val(response.data.name);
+            $("#updateItem #itemDescription").val(response.data.description);
+            $("#updateItem #itemExpirationDate").val(response.data.expirationDate);
+        });
+    document.getElementById('update_item').style.display='block';
+}
+
+function switchEditItemToAddCategory() {
+    document.getElementById('update_item').style.display='none';
     document.getElementById('add_category').style.display='block';
 }
 
 <!-- Validate Add Item-->
 function validateAddItem() {
-    document.getElementById("errorSaveSelectCategory").style.display = "none";
-    document.getElementById("errorSaveItemName").style.display = "none";
-    document.getElementById("errorSaveItemDate").style.display = "none";
+    document.getElementById("errorAddSelectCategory").style.display = "none";
+    document.getElementById("errorAddItemName").style.display = "none";
+    document.getElementById("errorAddItemDate").style.display = "none";
 
     // Validate if is selected a category
     var itemCategory = $("#newItem #itemCategory").val();
     if (itemCategory == '' || itemCategory == null) {
-        document.getElementById("errorSaveSelectCategory").style.display = "block";
-        $("#newItem #errorSaveSelectCategory").text("Please select a category!");
+        document.getElementById("errorAddSelectCategory").style.display = "block";
+        $("#newItem #errorAddSelectCategory").text("Please select a category!");
         return false;
     }
 
     // Validate the name
     var inputName = $("#newItem #itemName").val();
     if (!validateItemName(inputName)) {
-        document.getElementById("errorSaveItemName").style.display = "block";
-        $("#newItem #errorSaveItemName").text("The name must be between 3 and 20 characters and contain only " +
+        document.getElementById("errorAddItemName").style.display = "block";
+        $("#newItem #errorAddItemName").text("The name must be between 3 and 20 characters and contain only " +
             "uppercase or lowercase letters, numbers, spaces or only the '-' or '.' special characters!");
         return false;
     }
 
     // Validate if is selected an expiration date
     var itemDate = $("#newItem #itemExpirationDate").val();
-    if (itemDate == '' || itemDate == null) {
-        document.getElementById("errorSaveItemDate").style.display = "block";
-        $("#newItem #errorSaveItemDate").text("Please select an experation date!");
+    if (!validateDate(itemDate)) {
+        document.getElementById("errorAddItemDate").style.display = "block";
+        $("#newItem #errorAddItemDate").text("Please enter an expiration date that respects the YYYY-MM-DD pattern!");
+        return false;
+    }
+    return true;
+}
+
+<!-- Validate Update Item-->
+function validateUpdateItem() {
+    document.getElementById("errorEditItemName").style.display = "none";
+    document.getElementById("errorEditItemDate").style.display = "none";
+
+    // Validate the name
+    var inputName = $("#updateItem #itemName").val();
+    if (!validateItemName(inputName)) {
+        document.getElementById("errorEditItemName").style.display = "block";
+        $("#updateItem #errorEditItemName").text("The name must be between 3 and 20 characters and contain only " +
+            "uppercase or lowercase letters, numbers, spaces or only the '-' or '.' special characters!");
+        return false;
+    }
+
+    // Validate if is selected an expiration date
+    var itemDate = $("#updateItem #itemExpirationDate").val();
+    if (!validateDate(itemDate)) {
+        document.getElementById("errorEditItemDate").style.display = "block";
+        $("#updateItem #errorEditItemDate").text("Please enter an expiration date that respects the " +
+            "YYYY-MM-DD pattern!");
         return false;
     }
     return true;
@@ -161,3 +223,16 @@ function validateItemName(inputName) {
     var regex = /^[A-Za-z0-9-\s.]{3,20}$/g;
     return regex.test(inputName);
 }
+
+function validateDate(itemDate) {
+    var regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+    return regex.test(itemDate);
+}
+
+/* The category is automatically selected depending
+   on wich html page a new item is added to */
+function add_item(id) {
+    $("#newItem #itemCategory").val(id);
+    document.getElementById('add_item').style.display="block";
+}
+
