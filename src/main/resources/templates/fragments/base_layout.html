@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/menu :: mainMenu"></div>
+    <div th:replace="fragments/menu :: dashboardMenu"></div>
+</head>
+<body class="bg-light">
+
+    <div layout:fragment="content"></div>
+
+    <div th:replace="fragments/modal :: addCategory"></div>
+    <div th:replace="fragments/modal :: addItem"></div>
+    <div th:replace="fragments/modal :: updateItem"></div>
+    <div th:replace="fragments/modal :: viewItem"></div>
+    <div th:replace="fragments/modal :: updateCategory"></div>
+    <div th:replace="fragments/footer :: footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../assets/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

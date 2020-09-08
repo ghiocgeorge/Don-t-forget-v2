@@ -1,13 +1,11 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/base_layout}"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <div th:replace="fragments/header :: header"></div>
 </head>
 <body class="bg-light">
-  <div th:replace="fragments/menu :: mainMenu"></div>
-  <div th:replace="fragments/menu :: dashboardMenu"></div>
 
-  <main role="main" class="container">
+  <main role="main" layout:fragment="content" class="container">
     <div th:replace="fragments/joke :: jokeCard"></div>
 
     <!-- Start All items box-->
@@ -44,10 +42,5 @@
     </div>
     <!-- End All items box-->
   </main>
-  <div th:replace="fragments/modal :: addCategory"></div>
-  <div th:replace="fragments/modal :: addItem"></div>
-  <div th:replace="fragments/modal :: updateItem"></div>
-  <div th:replace="fragments/modal :: viewItem"></div>
-  <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

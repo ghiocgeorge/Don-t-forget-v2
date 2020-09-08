@@ -1,92 +1,85 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/base_layout}"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-<div th:replace="fragments/header :: header"></div>
 </head>
 <body class="bg-light">
-<div th:replace="fragments/menu :: mainMenu"></div>
-<div th:replace="fragments/menu :: dashboardMenu"></div>
-<main class="container" role="main">
-<div th:replace="fragments/joke :: jokeCard"></div>
-    <!-- Start items box -->
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <div class="border-bottom border-gray pb-2 mb-0">
-            <div class="row justify-content-between">
-                <div class="col align-middle">
-                    <h5>Goind to expire in next days</h5>
+
+    <main role="main" layout:fragment="content" class="container">
+        <div th:replace="fragments/joke :: jokeCard"></div>
+        <!-- Start items box -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="border-bottom border-gray pb-2 mb-0">
+                <div class="row justify-content-between">
+                    <div class="col align-middle">
+                        <h5>Goind to expire in next days</h5>
+                    </div>
+                    <div class="col-4 text-right">
+                        <a class="btn btn-sm" th:onclick="document.getElementById('add_item').style.display='block'"
+                            title="Add new item">
+                            <img class="align-top" src="../assets/brand/add-grey.svg" width="20"></a>
+                    </div>
                 </div>
-                <div class="col-4 text-right">
-                    <a class="btn btn-sm" th:onclick="document.getElementById('add_item').style.display='block'"
-                        title="Add new item">
-                        <img class="align-top" src="../assets/brand/add-grey.svg" width="20"></a>
+            </div>
+            <div class="media text-muted pt-3" th:each = "item : ${listItems}">
+                <div>
+                    <img class="mr-3" src="../assets/brand/smile.svg" alt="Smile" width="35" height="35">
+                </div>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
+                    <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
+                    <a th:text = "${item.expirationDate}"></a>
+                <div>
+                    <a class="btn btn-sm mb-3" th:id="${item.id}" th:onclick="view_item(id)" title="View item">
+                        <img src="../assets/brand/view-grey.svg" width="20"></a>
+                    <a class="btn btn-sm mb-3" th:id="${item.id}" th:onclick="edit_item(id)" title="Edit item">
+                        <img src="../assets/brand/edit-grey.svg" width="20"></a>
+                    <a th:id="${item.id}" th:onclick="confirm_delete_item(id)"
+                        class="btn btn-sm mb-3" title="Delete item">
+                        <img src="../assets/brand/delete-grey.svg" width="20"></a>
+                </div>
+                </p>
+            </div>
+        </div>
+        <!-- End items box -->
+        <!-- Start categories box -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="border-bottom border-gray pb-2 mb-0">
+                <div class="row justify-content-between">
+                    <div class="col align-middle">
+                        <h5>Categories</h5>
+                    </div>
+                    <div class="col-4 text-right">
+                        <a class="btn btn-sm" th:onclick="document.getElementById('add_category').style.display='block'"
+                            title="Add new category">
+                            <img class="align-top" src="../assets/brand/add-grey.svg" width="20"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3" th:each="category : ${listCategories}">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark" th:text="${category.name}"></strong>
+                    <span th:text = "${category.description}"></span>
+                <div>
+                    <a class="btn btn-sm mb-3" th:id="${category.id}" th:onclick="update_category(id)"
+                        title="Edit category"><img src="../assets/brand/edit-grey.svg" width="20"></a>
+                    <a class="btn btn-sm mb-3" th:id="${category.id}" th:onclick="confirm_delete_category(id)"
+                        title="Delete category"><img src="../assets/brand/delete-grey.svg" width="20"/></a>
+                </div>
+                </p>
+            </div>
+        </div>
+        <!-- End categories box -->
+        <!-- Start Shopping List -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="border-bottom border-gray pb-2 mb-0">
+                <div class="row justify-content-between">
+                    <div class="col align-middle">
+                        <h5>Shopping List</h5>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="media text-muted pt-3" th:each = "item : ${listItems}">
-            <div>
-                <img class="mr-3" src="../assets/brand/smile.svg" alt="Smile" width="35" height="35">
-            </div>
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
-                <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
-                <a th:text = "${item.expirationDate}"></a>
-            <div>
-                <a class="btn btn-sm mb-3" th:id="${item.id}" th:onclick="view_item(id)" title="View item">
-                    <img src="../assets/brand/view-grey.svg" width="20"></a>
-                <a class="btn btn-sm mb-3" th:id="${item.id}" th:onclick="edit_item(id)" title="Edit item">
-                    <img src="../assets/brand/edit-grey.svg" width="20"></a>
-                <a th:id="${item.id}" th:onclick="confirm_delete_item(id)"
-                    class="btn btn-sm mb-3" title="Delete item">
-                    <img src="../assets/brand/delete-grey.svg" width="20"></a>
-            </div>
-            </p>
-        </div>
-    </div>
-    <!-- End items box -->
-    <!-- Start categories box -->
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <div class="border-bottom border-gray pb-2 mb-0">
-            <div class="row justify-content-between">
-                <div class="col align-middle">
-                    <h5>Categories</h5>
-                </div>
-                <div class="col-4 text-right">
-                    <a class="btn btn-sm" th:onclick="document.getElementById('add_category').style.display='block'"
-                        title="Add new category">
-                        <img class="align-top" src="../assets/brand/add-grey.svg" width="20"></a>
-                </div>
-            </div>
-        </div>
-        <div class="media text-muted pt-3" th:each="category : ${listCategories}">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark" th:text="${category.name}"></strong>
-                <span th:text = "${category.description}"></span>
-            <div>
-                <a class="btn btn-sm mb-3" th:id="${category.id}" th:onclick="update_category(id)"
-                    title="Edit category"><img src="../assets/brand/edit-grey.svg" width="20"></a>
-                <a class="btn btn-sm mb-3" th:id="${category.id}" th:onclick="confirm_delete_category(id)"
-                    title="Delete category"><img src="../assets/brand/delete-grey.svg" width="20"/></a>
-            </div>
-            </p>
-        </div>
-    </div>
-    <!-- End categories box -->
-    <!-- Start Shopping List -->
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <div class="border-bottom border-gray pb-2 mb-0">
-            <div class="row justify-content-between">
-                <div class="col align-middle">
-                    <h5>Shopping List</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Shopping List -->
-</main>
-<div th:replace="fragments/modal :: addCategory"></div>
-<div th:replace="fragments/modal :: updateCategory"></div>
-<div th:replace="fragments/modal :: addItem"></div>
-<div th:replace="fragments/modal :: updateItem"></div>
-<div th:replace="fragments/modal :: viewItem"></div>
-<div th:replace="fragments/footer :: footer"></div>
+        <!-- End Shopping List -->
+    </main>
 </body>
 </html>

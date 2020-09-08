@@ -1,15 +1,12 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/index_layout}">
 <head>
-    <div th:replace="fragments/header :: header"></div>
 </head>
 <body class="bg-gradient-light">
-    <div th:replace="fragments/menu :: indexMenu"></div>
-
     <!-- Start main container -->
-    <main>
+    <main role="main" layout:fragment="content">
         <div class=" container text-center">
-            <img class="d-block mx-auto mb-4" src="../assets/brand/logo.svg" alt="" width="150" height="150">
+            <img class="d-block mx-auto my-4" src="../assets/brand/logo.svg" alt="" width="150" height="150">
             <p class="lead"><i><b>Don't forget</b></i> is much more than a reminder app. There are several benefits
                 that make it a mandatory application in anyone's life.</p>
         </div>
@@ -73,9 +70,8 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title mt-3">Personalized</h5>
-                            <p class="card-text">In the application you have some predefined categories, but you can
-                                delete them and add your own categories.</p>
-                            <small class="text-muted">NOT IMPLEMENTED YET! BE PATIENT! SOON!</small>
+                            <p class="card-text">In the application you can add your own categories and you can
+                                delete them or edit their name or description anytime.</p>
                         </div>
                     </div>
                 </div>
@@ -164,14 +160,11 @@
         <!-- Login and Sign up buttons -->
         <div class="container text-center">
             <p class="lead">
-                <a href="/all" class="btn btn-lg btn-warning mr-2">Sign in</a>
-                <a href="/all" class="btn btn-lg btn-outline-warning">Sign up</a>
+                <a href="/dashboard" class="btn btn-lg btn-warning mr-2">Sign in</a>
+                <a href="/dashboard" class="btn btn-lg btn-outline-warning">Sign up</a>
             </p>
         </div>
     </main>
     <!-- End main container -->
-
-    <div th:replace="fragments/footer :: footer"></div>
-
 </body>
 </html>
