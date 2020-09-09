@@ -48,23 +48,38 @@ function confirm_delete_category(id) {
     }
 }
 
-<!-- Validate Add Category-->
+<!-- Validate Add Name Category-->
 $(document).ready(function() {
     $("#newCategory #categoryName").keyup(function() {
-        document.getElementById("errorAddCategory").style.display = "none";
+        document.getElementById("errorAddCategoryName").style.display = "none";
         document.getElementById("submitAddCategory").disabled = false;
         var inputName = $("#newCategory #categoryName").val();
-        if (!validateCategoryName(inputName))
-            return errorSaveCategory("The name must be between 3 and 20 characters and contain only uppercase or " +
+        if (!validateCategoryName(inputName)) {
+            return errorAddCategoryName("The name must be between 3 and 20 characters and contain only uppercase or " +
                 "lowercase letters, numbers, or only the '_' and '.' special characters!");
+        }
         axios.get('/categories/' + inputName)
             .then(function (response) {
                 if (response.data){
-                    errorSaveCategory("The name already exists! Please try something else!");
+                    errorAddCategoryName("The name already exists! Please try something else!");
                 };
             });
     });
 });
+
+<!-- Validate Add Category Form-->
+function validateAddCategory() {
+    document.getElementById("errorAddCategoryDescription").style.display = "none";
+
+    // Validate the description
+    var inputDescription = $("#newCategory #categoryDescription").val();
+    if (!validateCategoryDescription(inputDescription)) {
+        document.getElementById("errorAddCategoryDescription").style.display = "block";
+        $("#newCategory #errorAddCategoryDescription").text("The description must be between 1 and 30 characters!");
+        return false;
+    }
+    return true;
+}
 
 <!-- Show a category by id in a modal form-->
 function update_category(id) {
@@ -77,15 +92,16 @@ function update_category(id) {
     document.getElementById('update_category').style.display='block';
 }
 
-<!-- Validate Edit Category-->
+<!-- Validate Edit Name Category-->
 $(document).ready(function() {
     $("#updateCategory #categoryName").keyup(function() {
-        document.getElementById("errorEditCategory").style.display = "none";
+        document.getElementById("errorEditCategoryName").style.display = "none";
         document.getElementById("submitEditCategory").disabled = false;
         var inputName = $("#updateCategory #categoryName").val();
-        if (!validateCategoryName(inputName))
-            return errorEditCategory("The name must be between 3 and 20 characters and contain only uppercase or " +
+        if (!validateCategoryName(inputName)) {
+            return errorEditCategoryName("The name must be between 3 and 20 characters and contain only uppercase or " +
                 "lowercase letters, numbers, or only the '_' and '.' special characters!");
+        }
         var id = $("#updateCategory #categoryId").val();
         axios.get('/category/' + id)
             .then(function (response) {
@@ -94,7 +110,7 @@ $(document).ready(function() {
                     axios.get('/categories/' + inputName)
                         .then(function (response) {
                             if (response.data){
-                                errorEditCategory("The name already exists! Please try something else!");
+                                errorEditCategoryName("The name already exists! Please try something else!");
                             };
                         });
                 };
@@ -102,21 +118,40 @@ $(document).ready(function() {
     });
 });
 
+<!-- Validate Edit Category Form-->
+function validateUpdateCategory() {
+    document.getElementById("errorEditCategoryDescription").style.display = "none";
+
+    // Validate the description
+    var inputDescription = $("#updateCategory #categoryDescription").val();
+    if (!validateCategoryDescription(inputDescription)) {
+        document.getElementById("errorEditCategoryDescription").style.display = "block";
+        $("#updateCategory #errorEditCategoryDescription").text("The description must be between 1 and 30 characters!");
+        return false;
+    }
+    return true;
+}
+
 function validateCategoryName(inputName) {
     var regex = /^[A-Za-z0-9_.]{3,20}$/g;
     return regex.test(inputName);
 }
 
-function errorSaveCategory(message) {
-    document.getElementById("submitAddCategory").disabled = true;
-    document.getElementById("errorAddCategory").style.display = "block";
-    $("#newCategory #errorAddCategory").text(message);
+function validateCategoryDescription(inputDescription) {
+    var regex = /^[A-Za-z0-9\s\W_]{1,30}$/g;
+    return regex.test(inputDescription);
 }
 
-function errorEditCategory(message) {
+function errorAddCategoryName(message) {
+    document.getElementById("submitAddCategory").disabled = true;
+    document.getElementById("errorAddCategoryName").style.display = "block";
+    $("#newCategory #errorAddCategoryName").text(message);
+}
+
+function errorEditCategoryName(message) {
     document.getElementById("submitEditCategory").disabled = true;
-    document.getElementById("errorEditCategory").style.display = "block";
-    $("#updateCategory #errorEditCategory").text(message);
+    document.getElementById("errorEditCategoryName").style.display = "block";
+    $("#updateCategory #errorEditCategoryName").text(message);
 }
 
 function switchAddItemToAddCategory() {

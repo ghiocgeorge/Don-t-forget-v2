@@ -17,7 +17,7 @@ public class Item {
     @NotNull
     @Size(min = 3, max = 40, message = "The item name must be {min} to {max} characters in length!")
     private String name;
-    private String description = "No description";
+    private String description;
     @NotNull
     private String expirationDate;
 
@@ -33,9 +33,7 @@ public class Item {
                 String categoryName, String categoryDescription) {
         this.codeBarId = codeBarId;
         this.name = name;
-        if(!description.equals("")) {
-            this.description = description;
-        }
+        this.description = description;
         this.expirationDate = expirationDate;
         this.category = new Category(categoryId, categoryName, categoryDescription);
     }

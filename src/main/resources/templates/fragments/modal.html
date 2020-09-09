@@ -4,7 +4,8 @@
 <div th:fragment="addCategory">
     <!-- Start Add Categpory -->
     <div id="add_category" class="modal">
-        <form th:action="@{/category/save}" th:object="${category}" method="POST" id="newCategory">
+        <form th:action="@{/category/save}" th:object="${category}" method="POST" id="newCategory"
+            onSubmit="return validateAddCategory()">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -19,13 +20,14 @@
                             <input type="text" class="form-control" th:field="*{name}" placeholder="Category Name"
                                 id="categoryName"/>
                             <div class="alert alert-danger my-3" role="alert" style="display : none"
-                                 id="errorAddCategory"></div>
+                                 id="errorAddCategoryName"></div>
                         </div>
                         <div class="form-group">
-                            <label for="categoryDescription" class="col-form-label"> Description:
-                                <span class="text-muted">(Optional)</span></label>
+                            <label for="categoryDescription" class="col-form-label"> Description: *</label>
                             <input type="text" th:field="*{description}" placeholder="Category Description"
                                 class="form-control" id="categoryDescription"/>
+                            <div class="alert alert-danger my-3" role="alert" style="display : none"
+                                 id="errorAddCategoryDescription"></div>
                         </div>
                         <hr class="mt-4">
                         <span class="help-block text-danger">Fields marked with * are required.</span>
@@ -45,7 +47,8 @@
 <div th:fragment="updateCategory">
     <!-- Start Update Categpory -->
     <div id="update_category" class="modal">
-        <form th:action="@{/category/save}" th:object="${category}" method="POST" id="updateCategory">
+        <form th:action="@{/category/save}" th:object="${category}" method="POST" id="updateCategory"
+            onSubmit="return validateUpdateCategory()">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -61,20 +64,21 @@
                             <input type="text" class="form-control" th:field="*{name}" placeholder="Category Name"
                                 id="categoryName"/>
                             <div class="alert alert-danger my-3" role="alert" style="display : none"
-                                id="errorEditCategory"></div>
+                                id="errorEditCategoryName"></div>
                         </div>
                         <div class="form-group">
-                            <label for="categoryDescription" class="col-form-label"> Description:
-                                <span class="text-muted">(Optional)</span></label>
+                            <label for="categoryDescription" class="col-form-label"> Description: *</label>
                             <input type="text" th:field="*{description}" placeholder="Category Description"
                                 class="form-control" id="categoryDescription"/>
+                            <div class="alert alert-danger my-3" role="alert" style="display : none"
+                                 id="errorEditCategoryDescription"></div>
                         </div>
                         <hr class="mt-4">
                         <span class="help-block text-danger">Fields marked with * are required.</span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" id="submitEditCategory"
-                            class="btn btn-outline-warning btn-lg btn-block">Save</button>
+                        <button type="submit" id="submitEditCategory" class="btn btn-outline-warning btn-lg btn-block"
+                            disabled>Save</button>
                         <button th:onclick="document.getElementById('update_category').style.display='none'"
                             type="button" class="btn btn-danger btn-lg btn-block">Cancel</button>
                     </div>
@@ -126,7 +130,7 @@
                                  style="display : none"></div>
                         </div>
                         <div class="form-group">
-                            <label for="itemDescription">Description: <span class="text-muted">(Optional)</span></label>
+                            <label for="itemDescription">Description:</label>
                             <input type="text" th:field="*{description}" placeholder="Item Description"
                                 class="form-control" id="itemDescription">
                         </div>
@@ -192,7 +196,7 @@
                                 style="display : none"></div>
                         </div>
                         <div class="form-group">
-                            <label for="itemDescription">Description: <span class="text-muted">(Optional)</span></label>
+                            <label for="itemDescription">Description:</label>
                             <input type="text" th:field="*{description}" placeholder="Item Description"
                                 class="form-control" id="itemDescription">
                         </div>

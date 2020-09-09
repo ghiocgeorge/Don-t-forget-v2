@@ -14,7 +14,8 @@ public class Category {
     @Size(min = 3, max = 20)
     @Column(unique = true)
     private String name;
-    private String description = "No description";
+    @NotNull
+    private String description;
 
     public Category() {
 
@@ -23,9 +24,7 @@ public class Category {
     public Category(Long id, String name, String description) {
         this.id = id;
         this.name = name;
-        if(!description.equals("")) {
-            this.description = description;
-        }
+        this.description = description;
     }
 
     public Long getId() {
