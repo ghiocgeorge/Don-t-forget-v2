@@ -15,7 +15,7 @@ public class Item {
     private Long id;
     private Long codeBarId;
     @NotNull
-    @Size(min = 3, max = 40, message = "The item name must be {min} to {max} characters in length!")
+    @Size(min = 3, max = 40)
     private String name;
     private String description;
     @NotNull
@@ -30,12 +30,12 @@ public class Item {
     }
 
     public Item(Long codeBarId, String name, String description, String expirationDate, Long categoryId,
-                String categoryName, String categoryDescription) {
+                String categoryName, String categoryDescription, Icon categoryIcon, Color categoryColor) {
         this.codeBarId = codeBarId;
         this.name = name;
         this.description = description;
         this.expirationDate = expirationDate;
-        this.category = new Category(categoryId, categoryName, categoryDescription);
+        this.category = new Category(categoryId, categoryName, categoryDescription, categoryIcon, categoryColor);
     }
 
     public Category getCategory() {

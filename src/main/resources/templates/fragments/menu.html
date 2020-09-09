@@ -6,10 +6,9 @@
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
             <a class="navbar-brand mr-auto mr-lg-4" href="/">
                 <img src="../assets/brand/logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""
-                     loading="lazy">Don't forget </a>
-            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse"
-                    data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    loading="lazy">Don't forget </a>
+            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse" aria-expanded="false"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -38,10 +37,9 @@
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
             <a class="navbar-brand mr-auto mr-lg-4" href="/">
                 <img src="../assets/brand/logo.svg" width="30" height="30" class="d-inline-block align-top" alt=""
-                     loading="lazy">Don't forget </a>
-            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse"
-                    data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    loading="lazy">Don't forget </a>
+            <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse" aria-expanded="false"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -80,16 +78,15 @@
                 <a class="nav-link" href="#">Expired</a>
                 <div th:each = "category : ${listCategories}">
                     <a class="nav-link" th:href="@{/items/{categoryId}(categoryId=${category.id})}"
-                       th:text = "${category.name}"></a>
+                        th:text = "${category.name}"></a>
                 </div>
                 <div class="mt-1">
                     <a th:onclick="document.getElementById('add_category').style.display='block'" class="btn btn-sm"
-                       title="Add new category"><img src="../assets/brand/add-grey.svg" width="20" class=""></a>
+                        title="Add new category"><img src="../assets/brand/add-grey.svg" width="20" class=""></a>
                 </div>
             </nav>
         </div>
         <!-- End Secondary menu -->
     </div>
-
 </body>
 </html>

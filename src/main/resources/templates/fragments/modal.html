@@ -15,26 +15,56 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <span>Choose an icon and a color for the icon!</span>
+                        <hr class="mt-2">
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>Icons:</label>
+                                <select class="form-control selectpicker" th:field="*{icon}" id="iconCategory">
+                                    <option th:each="icon : ${T(ro.vladutit.Don.t.forget.v2.model.Icon).values()}"
+                                            th:value="${icon}"
+                                            th:text="${icon}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Colors:</label>
+                                <select class="form-control selectpicker" th:field="*{color}" id="colorCategory">
+                                    <option th:style="${color.colorCode}"
+                                            th:each="color : ${T(ro.vladutit.Don.t.forget.v2.model.Color).values()}"
+                                            th:value="${color}"
+                                            th:text="${color}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="mr-3">Preview: </label>
+                            <span id="colorAdd" style="color: orange;">
+                                <i id="iconAdd" class="fas fa-clock" style="font-size: 30px;"></i>
+                            </span>
+                        </div>
+                        <hr>
                         <div class="form-group">
                             <label for="categoryName" class="col-form-label">Name: *</label>
                             <input type="text" class="form-control" th:field="*{name}" placeholder="Category Name"
                                 id="categoryName"/>
                             <div class="alert alert-danger my-3" role="alert" style="display : none"
-                                 id="errorAddCategoryName"></div>
+                                id="errorAddCategoryName"></div>
                         </div>
                         <div class="form-group">
                             <label for="categoryDescription" class="col-form-label"> Description: *</label>
                             <input type="text" th:field="*{description}" placeholder="Category Description"
                                 class="form-control" id="categoryDescription"/>
                             <div class="alert alert-danger my-3" role="alert" style="display : none"
-                                 id="errorAddCategoryDescription"></div>
+                                id="errorAddCategoryDescription"></div>
                         </div>
                         <hr class="mt-4">
                         <span class="help-block text-danger">Fields marked with * are required.</span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" id="submitAddCategory" class="btn btn-outline-warning btn-lg btn-block"
-                            disabled>Save</button>
+                        <button type="submit" id="submitAddCategory" class="btn btn-outline-warning btn-lg btn-block">
+                            Save</button>
                         <button th:onclick="document.getElementById('add_category').style.display='none'" type="button"
                             class="btn btn-danger btn-lg btn-block">Cancel</button>
                     </div>
@@ -59,6 +89,36 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" th:field="*{id}" id="categoryId">
+                        <span>Choose an icon and a color for the icon!</span>
+                        <hr class="mt-2">
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label>Icons:</label>
+                                <select class="form-control selectpicker" th:field="*{icon}" id="iconCategory">
+                                    <option th:each="icon : ${T(ro.vladutit.Don.t.forget.v2.model.Icon).values()}"
+                                            th:value="${icon}"
+                                            th:text="${icon}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Colors:</label>
+                                <select class="form-control selectpicker" th:field="*{color}" id="colorCategory">
+                                    <option th:style="${color.colorCode}"
+                                            th:each="color : ${T(ro.vladutit.Don.t.forget.v2.model.Color).values()}"
+                                            th:value="${color}"
+                                            th:text="${color}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="editPreview" >
+                            <label class="mr-3">Preview: </label>
+                            <span id="colorAdd" style="color: black;">
+                                <i class="fas fa-spinner fa-pulse" style="font-size: 30px;"></i>
+                            </span>
+                        </div>
+                        <hr>
                         <div class="form-group">
                             <label for="categoryName" class="col-form-label">Name: *</label>
                             <input type="text" class="form-control" th:field="*{name}" placeholder="Category Name"
@@ -71,14 +131,14 @@
                             <input type="text" th:field="*{description}" placeholder="Category Description"
                                 class="form-control" id="categoryDescription"/>
                             <div class="alert alert-danger my-3" role="alert" style="display : none"
-                                 id="errorEditCategoryDescription"></div>
+                                id="errorEditCategoryDescription"></div>
                         </div>
                         <hr class="mt-4">
                         <span class="help-block text-danger">Fields marked with * are required.</span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" id="submitEditCategory" class="btn btn-outline-warning btn-lg btn-block"
-                            disabled>Save</button>
+                        <button type="submit" id="submitEditCategory" class="btn btn-outline-warning btn-lg btn-block">
+                            Save</button>
                         <button th:onclick="document.getElementById('update_category').style.display='none'"
                             type="button" class="btn btn-danger btn-lg btn-block">Cancel</button>
                     </div>
@@ -112,7 +172,7 @@
                                 </option>
                             </select>
                             <div class="alert alert-danger my-3" role="alert" id="errorAddSelectCategory"
-                                 style="display : none"></div>
+                                style="display : none"></div>
                         </div>
                         <label>Didn't find the category you were looking for?</label>
                         <a type="button" th:onclick="switchAddItemToAddCategory()"
@@ -121,18 +181,22 @@
                             <label for="itemBarcode">Barcode:</label>
                             <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
                                 id="itemBarcode">
+                            <div class="alert alert-danger my-3" role="alert" id="errorAddItemBarCode"
+                                 style="display : none"></div>
                         </div>
                         <div class="form-group">
                             <label for="itemName">Name: *</label>
                             <input type="text" th:field="*{name}" placeholder="Item Name" class="form-control"
                                 id="itemName">
                             <div class="alert alert-danger my-3" role="alert" id="errorAddItemName"
-                                 style="display : none"></div>
+                                style="display : none"></div>
                         </div>
                         <div class="form-group">
                             <label for="itemDescription">Description:</label>
-                            <input type="text" th:field="*{description}" placeholder="Item Description"
-                                class="form-control" id="itemDescription">
+                            <textarea th:field="*{description}" placeholder="Item Description"
+                                class="form-control" id="itemDescription"/>
+                            <div class="alert alert-danger my-3" role="alert" id="errorAddItemDescription"
+                                 style="display : none"></div>
                         </div>
                         <div class="form-group">
                             <label for="itemExpirationDate">Expiration Date: *</label>
@@ -186,7 +250,9 @@
                         <div class="form-group">
                             <label for="itemBarcode">Barcode:</label>
                             <input type="text" th:field="*{codeBarId}" placeholder="Barcode" class="form-control"
-                                   id="itemBarcode">No Barcode</input>
+                                id="itemBarcode"/>
+                            <div class="alert alert-danger my-3" role="alert" id="errorEditItemBarCode"
+                                 style="display : none"></div>
                         </div>
                         <div class="form-group">
                             <label for="itemName">Name: *</label>
@@ -197,8 +263,10 @@
                         </div>
                         <div class="form-group">
                             <label for="itemDescription">Description:</label>
-                            <input type="text" th:field="*{description}" placeholder="Item Description"
-                                class="form-control" id="itemDescription">
+                            <textarea th:field="*{description}" placeholder="Item Description"
+                                class="form-control" id="itemDescription"/>
+                            <div class="alert alert-danger my-3" role="alert" id="errorEditItemDescription"
+                                 style="display : none"></div>
                         </div>
                         <div class="form-group">
                             <label for="itemExpirationDate">Expiration Date: *</label>
@@ -250,7 +318,7 @@
                         </div>
                         <div class="form-group">
                             <label for="itemDescription">Description:</label>
-                            <input readonly type="text" class="form-control" id="itemDescription"/>
+                            <textarea readonly class="form-control" id="itemDescription"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="itemExpirationDate">Expiration Date:</label>

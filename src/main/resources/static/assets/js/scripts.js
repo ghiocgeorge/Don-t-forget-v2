@@ -55,7 +55,7 @@ $(document).ready(function() {
         document.getElementById("submitAddCategory").disabled = false;
         var inputName = $("#newCategory #categoryName").val();
         if (!validateCategoryName(inputName)) {
-            return errorAddCategoryName("The name must be between 3 and 20 characters and contain only uppercase or " +
+            return errorAddCategoryName("The name must be between 3 and 17 characters and contain only uppercase or " +
                 "lowercase letters, numbers, or only the '_' and '.' special characters!");
         }
         axios.get('/categories/' + inputName)
@@ -70,6 +70,14 @@ $(document).ready(function() {
 <!-- Validate Add Category Form-->
 function validateAddCategory() {
     document.getElementById("errorAddCategoryDescription").style.display = "none";
+    document.getElementById("errorAddCategoryName").style.display = "none";
+
+    // Validate the name
+    var inputName = $("#newCategory #categoryName").val();
+    if (!validateCategoryName(inputName)) {
+        errorAddCategoryName("The fields is required. Please type something!");
+        return false;
+    }
 
     // Validate the description
     var inputDescription = $("#newCategory #categoryDescription").val();
@@ -84,10 +92,14 @@ function validateAddCategory() {
 <!-- Show a category by id in a modal form-->
 function update_category(id) {
     axios.get('/category/' + id)
-        .then(function (response) {
+        .then(async function (response) {
             $("#updateCategory #categoryId").val(response.data.id);
+            $("#updateCategory #iconCategory").val(response.data.icon);
+            $("#updateCategory #colorCategory").val(response.data.color);
             $("#updateCategory #categoryName").val(response.data.name);
             $("#updateCategory #categoryDescription").val(response.data.description);
+            iconEdit();
+            colorEdit();
         });
     document.getElementById('update_category').style.display='block';
 }
@@ -99,7 +111,7 @@ $(document).ready(function() {
         document.getElementById("submitEditCategory").disabled = false;
         var inputName = $("#updateCategory #categoryName").val();
         if (!validateCategoryName(inputName)) {
-            return errorEditCategoryName("The name must be between 3 and 20 characters and contain only uppercase or " +
+            return errorEditCategoryName("The name must be between 3 and 17 characters and contain only uppercase or " +
                 "lowercase letters, numbers, or only the '_' and '.' special characters!");
         }
         var id = $("#updateCategory #categoryId").val();
@@ -133,7 +145,7 @@ function validateUpdateCategory() {
 }
 
 function validateCategoryName(inputName) {
-    var regex = /^[A-Za-z0-9_.]{3,20}$/g;
+    var regex = /^[A-Za-z0-9_.]{3,17}$/g;
     return regex.test(inputName);
 }
 
@@ -142,18 +154,63 @@ function validateCategoryDescription(inputDescription) {
     return regex.test(inputDescription);
 }
 
+<!-- Show error message for Add Category Name -->
 function errorAddCategoryName(message) {
     document.getElementById("submitAddCategory").disabled = true;
     document.getElementById("errorAddCategoryName").style.display = "block";
     $("#newCategory #errorAddCategoryName").text(message);
 }
 
+<!-- Show error message for Edit Category Name -->
 function errorEditCategoryName(message) {
     document.getElementById("submitEditCategory").disabled = true;
     document.getElementById("errorEditCategoryName").style.display = "block";
     $("#updateCategory #errorEditCategoryName").text(message);
 }
 
+<!-- View the icon in add category form -->
+$(document).ready(function() {
+    $("#newCategory #iconCategory").change(async function() {
+        var inputIcon = $("#newCategory #iconCategory").val();
+        let result = await axios.get('/icons/' + inputIcon);
+        $("#newCategory #colorAdd").html("<i id='iconAdd' class='" + result.data + "' style='font-size: 30px;'></i>");
+    });
+});
+
+<!-- View the color in add category form -->
+$(document).ready(function() {
+    $("#newCategory #colorCategory").change(function() {
+        var inputColor = $("#newCategory #colorCategory").val();
+        $("#newCategory #colorAdd").css("color", inputColor);
+    });
+});
+
+<!-- View the icon in edit category form -->
+async function iconEdit() {
+    var inputIcon = $("#updateCategory #iconCategory").val();
+    let result = await axios.get('/icons/' + inputIcon);
+    $("#updateCategory #colorAdd").html("<i class='" + result.data + "' style='font-size: 30px;'></i>");
+}
+
+$(document).ready(function() {
+    $("#updateCategory #iconCategory").change(function() {
+        iconEdit();
+    });
+});
+
+<!-- View the color in edit category form -->
+function colorEdit() {
+    var inputColor = $("#updateCategory #colorCategory").val();
+    $("#updateCategory #colorAdd").css("color", inputColor);
+}
+
+$(document).ready(function() {
+    $("#updateCategory #colorCategory").change(function() {
+        colorEdit();
+    });
+});
+
+<!-- Switch the Add Item Modal to Add Category Modal -->
 function switchAddItemToAddCategory() {
     document.getElementById('add_item').style.display='none';
     document.getElementById('add_category').style.display='block';
@@ -165,14 +222,20 @@ function view_item(id) {
         .then(function (response) {
             $("#viewItem #itemId").val(response.data.id);
             $("#viewItem #itemCategory").val(response.data.category.name);
+            $("#viewItem #itemName").val(response.data.name);
+            $("#viewItem #itemExpirationDate").val(response.data.expirationDate);
+
             if (response.data.codeBarId == '' || response.data.codeBarId == null) {
                 $("#viewItem #itemBarcode").val("No barcode");
             } else {
                 $("#viewItem #itemBarcode").val(response.data.codeBarId);
             }
-            $("#viewItem #itemName").val(response.data.name);
-            $("#viewItem #itemDescription").val(response.data.description);
-            $("#viewItem #itemExpirationDate").val(response.data.expirationDate);
+
+            if (response.data.description == '' || response.data.description == null) {
+                $("#viewItem #itemDescription").val("No description");
+            } else {
+                $("#viewItem #itemDescription").val(response.data.description);
+            }
         });
     document.getElementById('view_item').style.display='block';
 }
@@ -191,16 +254,19 @@ function edit_item(id) {
     document.getElementById('update_item').style.display='block';
 }
 
+<!-- Switch the Edit Item Modal to Add Category Modal -->
 function switchEditItemToAddCategory() {
     document.getElementById('update_item').style.display='none';
     document.getElementById('add_category').style.display='block';
 }
 
-<!-- Validate Add Item-->
+<!-- Validate Add Item Form -->
 function validateAddItem() {
     document.getElementById("errorAddSelectCategory").style.display = "none";
     document.getElementById("errorAddItemName").style.display = "none";
     document.getElementById("errorAddItemDate").style.display = "none";
+    document.getElementById("errorAddItemDescription").style.display = "none";
+    document.getElementById("errorAddItemBarCode").style.display = "none";
 
     // Validate if is selected a category
     var itemCategory = $("#newItem #itemCategory").val();
@@ -210,12 +276,29 @@ function validateAddItem() {
         return false;
     }
 
+    // Validate the CodeBar
+    var inputBarCode = $("#newItem #itemBarcode").val();
+    if (!validateItemBarCode(inputBarCode)) {
+        document.getElementById("errorAddItemBarCode").style.display = "block";
+        $("#newItem #errorAddItemBarCode").text("The barcode must be a maximum 13 characters " +
+            "and contain only digits!");
+        return false;
+    }
+
     // Validate the name
     var inputName = $("#newItem #itemName").val();
     if (!validateItemName(inputName)) {
         document.getElementById("errorAddItemName").style.display = "block";
         $("#newItem #errorAddItemName").text("The name must be between 3 and 20 characters and contain only " +
             "uppercase or lowercase letters, numbers, spaces or only the '-' or '.' special characters!");
+        return false;
+    }
+
+    // Validate the Description
+    var inputDescription = $("#newItem #itemDescription").val();
+    if (!validateItemDescription(inputDescription)) {
+        document.getElementById("errorAddItemDescription").style.display = "block";
+        $("#newItem #errorAddItemDescription").text("The description must be a maximum 255 characters!");
         return false;
     }
 
@@ -229,10 +312,21 @@ function validateAddItem() {
     return true;
 }
 
-<!-- Validate Update Item-->
+<!-- Validate Edit Item Form-->
 function validateUpdateItem() {
     document.getElementById("errorEditItemName").style.display = "none";
     document.getElementById("errorEditItemDate").style.display = "none";
+    document.getElementById("errorEditItemDescription").style.display = "none";
+    document.getElementById("errorEditItemBarCode").style.display = "none";
+
+    // Validate the CodeBar
+    var inputBarCode = $("#updateItem #itemBarcode").val();
+    if (!validateItemBarCode(inputBarCode)) {
+        document.getElementById("errorEditItemBarCode").style.display = "block";
+        $("#updateItem #errorEditItemBarCode").text("The barcode must be a maximum 13 characters " +
+            "and contain only digits!");
+        return false;
+    }
 
     // Validate the name
     var inputName = $("#updateItem #itemName").val();
@@ -240,6 +334,14 @@ function validateUpdateItem() {
         document.getElementById("errorEditItemName").style.display = "block";
         $("#updateItem #errorEditItemName").text("The name must be between 3 and 20 characters and contain only " +
             "uppercase or lowercase letters, numbers, spaces or only the '-' or '.' special characters!");
+        return false;
+    }
+
+    // Validate the Description
+    var inputDescription = $("#updateItem #itemDescription").val();
+    if (!validateItemDescription(inputDescription)) {
+        document.getElementById("errorEditItemDescription").style.display = "block";
+        $("#updateItem #errorEditItemDescription").text("The description must be a maximum 255 characters!");
         return false;
     }
 
@@ -259,6 +361,16 @@ function validateItemName(inputName) {
     return regex.test(inputName);
 }
 
+function validateItemDescription(inputDescription) {
+    var regex = /^[A-Za-z0-9\s\W_]{0,255}$/g;
+    return regex.test(inputDescription);
+}
+
+function validateItemBarCode(inputBarCode) {
+    var regex = /^[0-9]{0,13}$/g;
+    return regex.test(inputBarCode);
+}
+
 function validateDate(itemDate) {
     var regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
     return regex.test(itemDate);
@@ -270,4 +382,3 @@ function add_item(id) {
     $("#newItem #itemCategory").val(id);
     document.getElementById('add_item').style.display="block";
 }
-

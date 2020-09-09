@@ -2,13 +2,11 @@ package ro.vladutit.Don.t.forget.v2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ro.vladutit.Don.t.forget.v2.model.Category;
+import ro.vladutit.Don.t.forget.v2.model.Icon;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
-
-import javax.validation.Valid;
 
 @Controller
 public class CategoryController implements WebMvcConfigurer {
@@ -42,5 +40,11 @@ public class CategoryController implements WebMvcConfigurer {
     @ResponseBody
     public boolean checkCategoryName(@PathVariable(value = "name") String name) {
         return categoryService.getCategoryByName(name);
+    }
+
+    @GetMapping("/icons/{icon}")
+    @ResponseBody
+    public String getIconName(@PathVariable(value = "icon") Icon icon) {
+        return icon.getIconName();
     }
 }

@@ -4,7 +4,6 @@
 <head>
 </head>
 <body class="bg-light">
-
   <main role="main" layout:fragment="content" class="container">
     <div th:replace="fragments/joke :: jokeCard"></div>
 
@@ -12,10 +11,17 @@
     <div class="my-3 p-3 bg-white rounded shadow-sm">
       <div class="border-bottom border-gray pb-2 mb-0">
         <div class="row justify-content-between">
-          <div class="col-8 align-middle">
-            <h5 th:text="'Items from ' + ${title.name}"></h5>
+          <div class="row col-10 align-middle">
+            <div class="mx-3">
+              <div th:style="${title.color.colorCode}">
+                <i th:class="${title.icon.iconName}" style="font-size: 25px;"></i>
+              </div>
+            </div>
+            <div>
+              <h5 th:text="${title.name}"></h5>
+            </div>
           </div>
-          <div class="col-4 text-right">
+          <div class="col-2 text-right">
             <a class="btn btn-sm" th:id="${title.id}" th:onclick="add_item(id)" title="Add new item">
               <img class="align-top" src="../assets/brand/add-grey.svg" width="20"></a>
           </div>
@@ -23,9 +29,6 @@
       </div>
 
       <div class="media text-muted pt-3" th:each = "item : ${listItems}">
-        <div>
-          <img class="mr-3" src="../assets/brand/smile.svg" alt="Smile" width="35" height="35">
-        </div>
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
           <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
           <a th:text = "${item.expirationDate}"></a>

@@ -11,20 +11,24 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
-    @Size(min = 3, max = 20)
+    @Size(min = 3, max = 17)
     @Column(unique = true)
     private String name;
     @NotNull
     private String description;
+    private Icon icon;
+    private Color color;
 
     public Category() {
 
     }
 
-    public Category(Long id, String name, String description) {
+    public Category(Long id, String name, String description, Icon icon, Color color) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.icon = icon;
+        this.color = color;
     }
 
     public Long getId() {
@@ -49,5 +53,21 @@ public class Category {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Icon getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Icon icon) {
+        this.icon = icon;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

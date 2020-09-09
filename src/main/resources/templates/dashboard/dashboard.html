@@ -4,7 +4,6 @@
 <head>
 </head>
 <body class="bg-light">
-
     <main role="main" layout:fragment="content" class="container">
         <div th:replace="fragments/joke :: jokeCard"></div>
         <!-- Start items box -->
@@ -22,8 +21,10 @@
                 </div>
             </div>
             <div class="media text-muted pt-3" th:each = "item : ${listItems}">
-                <div>
-                    <img class="mr-3" src="../assets/brand/smile.svg" alt="Smile" width="35" height="35">
+                <div class="mr-2" style="width: 40px; text-align: center;">
+                    <div th:style="${item.category.color.colorCode}">
+                        <i th:class="${item.category.icon.iconName}" style="font-size: 30px;"></i>
+                    </div>
                 </div>
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
                     <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
@@ -49,13 +50,18 @@
                         <h5>Categories</h5>
                     </div>
                     <div class="col-4 text-right">
-                        <a class="btn btn-sm" th:onclick="document.getElementById('add_category').style.display='block'"
-                            title="Add new category">
+                        <a class="btn btn-sm" title="Add new category"
+                            th:onclick="document.getElementById('add_category').style.display='block'">
                             <img class="align-top" src="../assets/brand/add-grey.svg" width="20"></a>
                     </div>
                 </div>
             </div>
             <div class="media text-muted pt-3" th:each="category : ${listCategories}">
+                <div class="mr-2" style="width: 40px; text-align: center;">
+                    <div th:style="${category.color.colorCode}">
+                        <i th:class="${category.icon.iconName}" style="font-size: 30px;"></i>
+                    </div>
+                </div>
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <strong class="d-block text-gray-dark" th:text="${category.name}"></strong>
                     <span th:text = "${category.description}"></span>

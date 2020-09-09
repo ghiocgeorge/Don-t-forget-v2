@@ -4,7 +4,6 @@
 <head>
 </head>
 <body class="bg-light">
-
   <main role="main" layout:fragment="content" class="container">
     <div th:replace="fragments/joke :: jokeCard"></div>
 
@@ -23,8 +22,10 @@
         </div>
       </div>
       <div class="media text-muted pt-3" th:each = "item : ${listItems}">
-        <div>
-          <img class="mr-3" src="../assets/brand/smile.svg" alt="Smile" width="35" height="35">
+        <div class="mr-2" style="width: 40px; text-align: center;">
+          <div th:style="${item.category.color.colorCode}">
+            <i th:class="${item.category.icon.iconName}" style="font-size: 30px;"></i>
+          </div>
         </div>
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
           <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
