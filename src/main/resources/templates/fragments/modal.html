@@ -335,5 +335,76 @@
     </div>
     <!-- End View Item -->
 </div>
+<div th:fragment="register">
+    <!-- Start Register -->
+    <div id="register" class="modal">
+        <form th:action="@{/user/save}" th:object="${register}" method="POST" id="newUser"
+              onSubmit="return validateRegister()">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="register_title">Register a new account</h5>
+                        <button th:onclick="document.getElementById('register').style.display='none'" type="button"
+                                class="close"><span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="fullName" class="col-form-label">Full Name: *</label>
+                            <input type="text" class="form-control" th:field="*{fullname}" placeholder="Full Name"
+                                   id="fullName"/>
+                            <div class="alert alert-danger my-3" role="alert" style="display : none"
+                                 id="errorRegisterName"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="col-form-label">Username: *</label>
+                            <input type="text" class="form-control" th:field="*{username}" placeholder="Username"
+                                   id="userName"/>
+                            <div class="alert alert-danger my-3" role="alert" style="display : none"
+                                 id="errorRegisterUsername"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-form-label">Email: *</label>
+                            <input type="email" class="form-control" th:field="*{email}" placeholder="Email"
+                                   id="email"/>
+                            <div class="alert alert-danger my-3" role="alert" style="display : none"
+                                 id="errorRegisterEmail"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone" class="col-form-label">Telephone: <span>(Only mobile)</span></label>
+                            <input type="tel" class="form-control" th:field="*{telephone}" placeholder="Telephone"
+                                   id="telephone"/>
+                            <div class="alert alert-danger my-3" role="alert" style="display : none"
+                                 id="errorRegisterTelephone"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Password: *</label>
+                            <input type="password" class="form-control" th:field="*{password}" placeholder="Password"
+                                   id="password"/>
+                            <div class="alert alert-danger my-3" role="alert" style="display : none"
+                                 id="errorRegisterPassword"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="col-form-label">Confirm Password: *</label>
+                            <input type="password" class="form-control" placeholder="Confirm Password"
+                                   id="confirmPassword"/>
+                            <div class="alert alert-danger my-3" role="alert" style="display : none"
+                                 id="errorRegisterConfirmPassword"></div>
+                        </div>
+                        <hr class="mt-4">
+                        <span class="help-block text-danger">Fields marked with * are required.</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="submitRegister" class="btn btn-outline-warning btn-lg btn-block">
+                            Create an account</button>
+                        <button th:onclick="document.getElementById('register').style.display='none'" type="button"
+                            class="btn btn-danger btn-lg btn-block">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- End Register -->
+</div>
 </body>
 </html>

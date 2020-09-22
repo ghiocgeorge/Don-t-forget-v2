@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ro.vladutit.Don.t.forget.v2.model.Category;
 import ro.vladutit.Don.t.forget.v2.model.Item;
+import ro.vladutit.Don.t.forget.v2.model.User;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 import ro.vladutit.Don.t.forget.v2.service.ItemService;
 
@@ -18,7 +19,8 @@ public class DashboardController {
     public CategoryService categoryService;
 
     @RequestMapping({"/", "/index"})
-    public String index() {
+    public String index(Model user) {
+        user.addAttribute("register", new User());
         return "index";
     }
 
