@@ -1,6 +1,9 @@
 package ro.vladutit.Don.t.forget.v2.model;
 
 import javax.persistence.*;
+import java.sql.ConnectionBuilder;
+
+import static org.springframework.security.core.userdetails.User.builder;
 
 @Entity
 @Table(name = "users")
@@ -32,6 +35,10 @@ public class User {
         this.telephone = telephone;
         this.email = email;
         this.role = role;
+    }
+
+    public static org.springframework.security.core.userdetails.User.UserBuilder withUsername(String email) {
+        return builder().username(email);
     }
 
     public Long getId() {

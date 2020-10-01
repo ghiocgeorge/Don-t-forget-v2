@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
     <div th:fragment = "indexMenu">
         <!-- Start Principal menu -->
@@ -16,6 +16,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Jokes</a>
                     </li>
@@ -24,7 +27,12 @@
                     </li>
                 </ul>
                 <div class=" my-2 my-lg-0">
-                    <a href="/dashboard" class="btn btn-sm btn-warning mr-2" >Sign in</a>
+                    <span sec:authorize="isAnonymous()">
+                        <a href="/login" class="btn btn-sm btn-warning mr-2" >Sign in</a>
+                    </span>
+                    <span sec:authorize="isAuthenticated()">
+                        <a href="/logout" class="btn btn-sm btn-warning mr-2">Sign out</a>
+                    </span>
                     <a href="/register" class="btn btn-sm btn-outline-warning">Sign up</a>
                 </div>
             </div>
@@ -62,7 +70,7 @@
                     </li>
                 </ul>
                 <div class=" my-2 my-lg-0">
-                    <a class="btn btn-outline-warning btn-sm" href="#">Sign out</a>
+                    <a class="btn btn-outline-warning btn-sm" href="/logout">Sign out</a>
                 </div>
             </div>
         </nav>

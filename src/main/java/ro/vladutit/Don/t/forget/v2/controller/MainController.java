@@ -16,10 +16,15 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class RegistrationController {
+public class MainController {
 
     @Autowired
     private UserService userService;
+
+    @RequestMapping({"/", "/index"})
+    public String index() {
+        return "index";
+    }
 
     @RequestMapping("/register")
     public String register(Model userData) {
@@ -53,6 +58,12 @@ public class RegistrationController {
             form.addAttribute("registrationForm", userData);
             return "account/register";
         }
-        return "redirect:/index";
+        return "redirect:/login";
     }
+
+    @RequestMapping("/login")
+    public String login() {
+        return "account/login";
+    }
+
 }

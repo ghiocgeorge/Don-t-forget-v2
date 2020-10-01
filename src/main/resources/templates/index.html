@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/index_layout}">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/index_layout}"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 </head>
 <body class="bg-gradient-light">
@@ -160,7 +161,12 @@
         <!-- Login and Sign up buttons -->
         <div class="container text-center">
             <p class="lead">
-                <a href="/dashboard" class="btn btn-lg btn-warning mr-2">Sign in</a>
+                <span sec:authorize="isAnonymous()">
+                    <a href="/login" class="btn btn-lg btn-warning mr-2" >Sign in</a>
+                </span>
+                <span sec:authorize="isAuthenticated()">
+                    <a href="/logout" class="btn btn-lg btn-warning mr-2">Sign out</a>
+                </span>
                 <a href="/register" class="btn btn-lg btn-outline-warning">Sign up</a>
             </p>
         </div>

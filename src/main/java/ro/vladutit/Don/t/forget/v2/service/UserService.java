@@ -29,7 +29,6 @@ public class UserService {
         encodePassword(user, userData);
         userRepository.save(user);
     }
-
     public boolean checkIfUserExist(String email) {
         return userRepository.findByEmail(email) !=null ? true : false;
     }

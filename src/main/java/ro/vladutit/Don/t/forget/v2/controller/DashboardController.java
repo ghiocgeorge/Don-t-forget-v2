@@ -17,11 +17,6 @@ public class DashboardController {
     @Autowired
     public CategoryService categoryService;
 
-    @RequestMapping({"/", "/index"})
-    public String index() {
-        return "index";
-    }
-
     @RequestMapping("/dashboard")
     public String viewDashboard(
             Model item,
