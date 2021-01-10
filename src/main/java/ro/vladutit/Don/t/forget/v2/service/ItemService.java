@@ -2,6 +2,7 @@ package ro.vladutit.Don.t.forget.v2.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.vladutit.Don.t.forget.v2.model.Category;
 import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.repository.ItemRepository;
 
@@ -39,5 +40,9 @@ public class ItemService {
 
     public List<Item> getByCategoryId(Long categoryId){
         return itemRepository.getByCategoryId(categoryId);
+    }
+
+    public List<Item> getByUserId(Long userId){
+        return itemRepository.getByUserId(userId);
     }
 }

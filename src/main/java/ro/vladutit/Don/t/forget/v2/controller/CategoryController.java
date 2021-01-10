@@ -1,12 +1,18 @@
 package ro.vladutit.Don.t.forget.v2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import ro.vladutit.Don.t.forget.v2.model.Category;
+import ro.vladutit.Don.t.forget.v2.model.CustomUserDetails;
 import ro.vladutit.Don.t.forget.v2.model.Icon;
+import ro.vladutit.Don.t.forget.v2.model.User;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
+import ro.vladutit.Don.t.forget.v2.service.CustomUserDetailsService;
+import ro.vladutit.Don.t.forget.v2.service.UserService;
 
 @Controller
 public class CategoryController implements WebMvcConfigurer {
@@ -14,9 +20,15 @@ public class CategoryController implements WebMvcConfigurer {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private UserService userService;
+
     // Save category
     @PostMapping("/category/save")
-    public String addNew(Category category) {
+    public String addNew(Category category, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        String userEmail = userDetails.getUsername();
+        User user = userService.getByEmail(userEmail);
+        category.setUser(user);
         categoryService.addCategory(category);
         return "back";
     }

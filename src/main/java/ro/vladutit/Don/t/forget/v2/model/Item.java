@@ -23,19 +23,39 @@ public class Item {
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "category_id")
     public Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    public User user;
 
     public Item() {
 
     }
 
-    public Item(Long codeBarId, String name, String description, String expirationDate, Long categoryId,
-                String categoryName, String categoryDescription, Icon categoryIcon, Color categoryColor) {
+    public Item(Long id,
+                Long codeBarId,
+                String name,
+                String description,
+                String expirationDate,
+                Category category,
+                User user) {
+        this.id = id;
         this.codeBarId = codeBarId;
         this.name = name;
         this.description = description;
         this.expirationDate = expirationDate;
-        this.category = new Category(categoryId, categoryName, categoryDescription, categoryIcon, categoryColor);
+        this.category = category;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Category getCategory() {
@@ -85,4 +105,5 @@ public class Item {
     public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
     }
+
 }

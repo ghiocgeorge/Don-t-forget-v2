@@ -3,6 +3,7 @@ package ro.vladutit.Don.t.forget.v2.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.vladutit.Don.t.forget.v2.model.Category;
+import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.repository.CategoryRepository;
 
 import java.util.List;
@@ -40,5 +41,9 @@ public class CategoryService {
     public boolean getCategoryByName(String name) {
         Optional<Category> optional = categoryRepository.findByNameIgnoreCase(name);
         return optional.isPresent();
+    }
+
+    public List<Category> getByUserId(Long userId){
+        return categoryRepository.getByUserId(userId);
     }
 }

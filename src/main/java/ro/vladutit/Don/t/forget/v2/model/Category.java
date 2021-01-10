@@ -1,5 +1,8 @@
 package ro.vladutit.Don.t.forget.v2.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,16 +22,21 @@ public class Category {
     private Icon icon;
     private Color color;
 
+    @ManyToOne
+    @JoinColumn (name = "user_id")
+    public User user;
+
     public Category() {
 
     }
 
-    public Category(Long id, String name, String description, Icon icon, Color color) {
+    public Category(Long id, String name, String description, Icon icon, Color color, User user) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.icon = icon;
         this.color = color;
+        this.user = user;
     }
 
     public Long getId() {
@@ -69,5 +77,13 @@ public class Category {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

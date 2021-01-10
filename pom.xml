@@ -12,6 +12,7 @@
 	<artifactId>Don-t-forget-v2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Don-t-forget-v2</name>
+	<packaging>war</packaging>
 	<description>Reminder app</description>
 
 	<properties>
@@ -65,6 +66,11 @@
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 			<exclusions>
@@ -81,6 +87,7 @@
     </dependencies>
 
 	<build>
+		<finalName>dontforget-app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
