@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://thymeleaf.org/thymeleaf-extras-springsecurity5" >
 <body>
     <div th:fragment = "indexMenu">
         <!-- Start Principal menu -->
@@ -46,15 +46,21 @@
                         <a class="nav-link" href="/dashboard">Dashboard <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                 </ul>
-                <div class=" my-2 my-lg-0">
-                    <a class="btn btn-outline-warning btn-sm" href="/logout">Sign out</a>
-                </div>
+                <ul class="navbar-nav my-2 my-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" sec:authentication="principal.fullname">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item " href="/logout">Sign out</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </nav>
         <!-- End Principal menu -->
