@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header"></div>
+</head>
+<body>
+    <main>
+        <div class=" container text-center">
+            <img class="d-block mx-auto my-4" src="../assets/brand/error_logo.svg" alt="" width="150" height="150">
+            <p class="lead"><b th:text="${errorStatus}"></b> That's an error.</p>
+            <p class="lead" th:text="${errorMessage}"> </p>
+        </div>
+        <div class="container text-center">
+            <p class="lead">
+                <a href="/index" class="btn btn-lg btn-outline-warning">Go <b>HOME</b></a>
+            </p>
+        </div>
+    </main>
+</body>
+</html>
