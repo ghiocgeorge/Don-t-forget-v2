@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/index_layout}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body class="bg-light">
+    <main role="main" layout:fragment="content" class="container">
+
+    <!-- Start User Info box-->
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <div class="border-bottom border-gray pb-2 mb-0">
+            <div class="row justify-content-between">
+                <div class="col-8 align-middle">
+                    <h5><i class="fas fa-user mx-2"></i>Info</h5>
+                </div>
+            </div>
+        </div>
+        <div class="media text-muted pt-3">
+            <div class="mr-2 container-fluid">
+                <div class="row mb-2">
+                    <label for="userFullName" class="col-form-label col-sm-2">Name:</label>
+                    <input readonly type="text" class="form-control col" th:field="${user.fullname}" id="userFullName"/>
+                </div>
+                <div class="row mb-2">
+                    <label for="userEmail" class="col-form-label col-sm-2">Email:</label>
+                    <input readonly type="text" class="form-control col" th:field="${user.email}" id="userEmail"/>
+                </div>
+                <div class="row">
+                    <label for="userPhone" class="col-form-label col-sm-2">Phone number:</label>
+                    <input readonly type="text" class="form-control col" th:field="${user.telephone}" id="userPhone"/>
+                </div>
+            </div>
+        </div>
+        <div class="media pt-3">
+            <div class="mr-2 container-fluid text-right">
+                <a href="/#" class="btn btn-sm btn-warning mr-2">Edit info</a>
+                <a href="/#" class="btn btn-sm btn-danger">Change password</a>
+            </div>
+        </div>
+    </div>
+    <!-- End User Info box-->
+  </main>
+</body>
+</html>
