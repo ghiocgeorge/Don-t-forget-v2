@@ -1,12 +1,15 @@
 package ro.vladutit.Don.t.forget.v2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ro.vladutit.Don.t.forget.v2.model.CustomUserDetails;
 import ro.vladutit.Don.t.forget.v2.model.User;
 import ro.vladutit.Don.t.forget.v2.model.UserData;
 import ro.vladutit.Don.t.forget.v2.service.UserAlreadyExistException;
@@ -16,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class RegistrationController {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -54,5 +57,33 @@ public class RegistrationController {
             return "account/register";
         }
         return "redirect:/index";
+    }
+
+    @RequestMapping("/profile")
+    public String view_user(
+            Model profile,
+            @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        profile.addAttribute("user", userService.getByEmail(customUserDetails.getUsername()));
+        return "account/profile";
+    }
+
+    @GetMapping("/profile/edit")
+    public String edit_user(
+            Model profile,
+            @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String userEmail = customUserDetails.getUsername();
+        profile.addAttribute("user", userService.getByEmail(userEmail));
+        return "account/edit_profile";
+    }
+
+    @PostMapping("/profile/save")
+    public String save_user(
+            @Valid User user,
+            BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "account/edit_profile";
+        }
+        userService.save(user);
+        return "redirect:/profile";
     }
 }

@@ -46,4 +46,8 @@ public class UserService {
 
     public User getByEmail(String userEmail) { return userRepository.findByEmail(userEmail);
     }
+
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }
