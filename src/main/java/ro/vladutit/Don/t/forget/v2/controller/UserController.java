@@ -2,14 +2,13 @@ package ro.vladutit.Don.t.forget.v2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import ro.vladutit.Don.t.forget.v2.model.CustomUserDetails;
+import ro.vladutit.Don.t.forget.v2.model.PasswordDto;
 import ro.vladutit.Don.t.forget.v2.model.User;
 import ro.vladutit.Don.t.forget.v2.model.UserData;
 import ro.vladutit.Don.t.forget.v2.service.UserAlreadyExistException;
@@ -23,6 +22,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @RequestMapping("/register")
     public String register(Model userData) {
@@ -84,6 +86,36 @@ public class UserController {
             return "account/edit_profile";
         }
         userService.save(user);
+        return "redirect:/profile";
+    }
+
+    @GetMapping("/change_password")
+    public String change_password(
+            PasswordDto password,
+            Model model) {
+        model.addAttribute("password", password);
+        return "account/change_password";
+    }
+
+    @PostMapping("/change_password/save")
+    public String save_password(
+            @AuthenticationPrincipal CustomUserDetails customUserDetails,
+            @ModelAttribute("password") @Valid PasswordDto password,
+            BindingResult bindingResult) {
+        String userEmail = customUserDetails.getUsername();
+        User user = userService.getByEmail(userEmail);
+        if(passwordEncoder.matches(password.getOldPassword(), user.getPassword())) {
+            if(bindingResult.hasErrors()) {
+                return "account/change_password";
+            }
+            userService.changeUserPassword(user, password.getNewPassword());
+        } else {
+            bindingResult.rejectValue(
+                    "oldPassword",
+                    "password.oldPassword",
+                    "The Old Password is incorrect.");
+            return "account/change_password";
+        }
         return "redirect:/profile";
     }
 }

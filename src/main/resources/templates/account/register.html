@@ -58,7 +58,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="Retype password"
-                        autocomplete="new-password" th:field="*{matchingPassword}">
+                        autocomplete="new-password" th:errorclass="is-invalid" th:field="*{matchingPassword}">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
