@@ -1,6 +1,9 @@
 package ro.vladutit.Don.t.forget.v2.model;
 
+import ro.vladutit.Don.t.forget.v2.annotation.ValidTelephone;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "users")
@@ -10,8 +13,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty(message = "Please type your first and last name!")
     private String fullname;
 
+    @ValidTelephone
     private String telephone;
 
     @Column(unique = true)
