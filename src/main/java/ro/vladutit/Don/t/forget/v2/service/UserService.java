@@ -50,4 +50,9 @@ public class UserService {
     public void save(User user) {
         userRepository.save(user);
     }
+
+    public void changeUserPassword(User user, String newPassword) {
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
 }

@@ -60,7 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     "/category/**",
                     "/all/**",
                     "/delete/**",
-                    "/profile/**").authenticated()
+                    "/profile/**",
+                    "/change_password/**").authenticated()
             .anyRequest().permitAll()
             .and()
             .formLogin()
