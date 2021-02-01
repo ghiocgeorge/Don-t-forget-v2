@@ -1,5 +1,9 @@
 package ro.vladutit.Don.t.forget.v2.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import javax.mail.MessagingException;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,9 +17,6 @@ import ro.vladutit.Don.t.forget.v2.model.User;
 import ro.vladutit.Don.t.forget.v2.model.UserData;
 import ro.vladutit.Don.t.forget.v2.service.UserAlreadyExistException;
 import ro.vladutit.Don.t.forget.v2.service.UserService;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -81,11 +82,16 @@ public class UserController {
     @PostMapping("/profile/save")
     public String save_user(
             @Valid User user,
-            BindingResult bindingResult) {
+            BindingResult bindingResult)
+            throws UnsupportedEncodingException, MessagingException {
         if(bindingResult.hasErrors()) {
             return "account/edit_profile";
         }
         userService.save(user);
+
+        String subject = "Update info";
+        String message = "Hi! You just updated your information! Please contact us if you didn't made this operation!";
+        userService.sendNotificationEmail(user, message, subject);
         return "redirect:/profile";
     }
 
