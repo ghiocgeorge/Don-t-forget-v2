@@ -15,6 +15,7 @@ import ro.vladutit.Don.t.forget.v2.model.CustomUserDetails;
 import ro.vladutit.Don.t.forget.v2.model.PasswordDto;
 import ro.vladutit.Don.t.forget.v2.model.User;
 import ro.vladutit.Don.t.forget.v2.model.UserData;
+import ro.vladutit.Don.t.forget.v2.service.SmsService;
 import ro.vladutit.Don.t.forget.v2.service.UserAlreadyExistException;
 import ro.vladutit.Don.t.forget.v2.service.UserService;
 
@@ -23,6 +24,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SmsService smsService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -90,8 +94,9 @@ public class UserController {
         userService.save(user);
 
         String subject = "Update info";
-        String message = "Hi! You just updated your information! Please contact us if you didn't made this operation!";
+        String message = "You just updated your information! Please contact us if you didn't made this operation!";
         userService.sendNotificationEmail(user, message, subject);
+        smsService.sendNotificationSms(user, message);
         return "redirect:/profile";
     }
 

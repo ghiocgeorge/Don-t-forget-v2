@@ -13,13 +13,13 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
 @Constraint(validatedBy = { })
-@Pattern(regexp="[\\d]{0,20}")
+@Pattern(regexp="(\\+\\d{0,20})")
 @Target({ TYPE, FIELD, ANNOTATION_TYPE })
 @Retention(RUNTIME)
 @ReportAsSingleViolation
 public @interface ValidTelephone {
 
-    String message() default "Telephone must contain only digits and maximum 20 digits!";
+    String message() default "Telephone must contain only maxim 20 digits and the country prefix (Ex: +4 for Romania)!";
 
     Class<?>[] groups() default {};
 
