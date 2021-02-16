@@ -225,12 +225,6 @@ function view_item(id) {
             $("#viewItem #itemName").val(response.data.name);
             $("#viewItem #itemExpirationDate").val(response.data.expirationDate);
 
-            if (response.data.codeBarId == '' || response.data.codeBarId == null) {
-                $("#viewItem #itemBarcode").val("No barcode");
-            } else {
-                $("#viewItem #itemBarcode").val(response.data.codeBarId);
-            }
-
             if (response.data.description == '' || response.data.description == null) {
                 $("#viewItem #itemDescription").val("No description");
             } else {
@@ -246,7 +240,6 @@ function edit_item(id) {
         .then(function (response) {
             $("#updateItem #itemId").val(response.data.id);
             $("#updateItem #itemCategory").val(response.data.category.id);
-            $("#updateItem #itemBarcode").val(response.data.codeBarId);
             $("#updateItem #itemName").val(response.data.name);
             $("#updateItem #itemDescription").val(response.data.description);
             $("#updateItem #itemExpirationDate").val(response.data.expirationDate);
@@ -266,22 +259,12 @@ function validateAddItem() {
     document.getElementById("errorAddItemName").style.display = "none";
     document.getElementById("errorAddItemDate").style.display = "none";
     document.getElementById("errorAddItemDescription").style.display = "none";
-    document.getElementById("errorAddItemBarCode").style.display = "none";
 
     // Validate if is selected a category
     var itemCategory = $("#newItem #itemCategory").val();
     if (itemCategory == '' || itemCategory == null) {
         document.getElementById("errorAddSelectCategory").style.display = "block";
         $("#newItem #errorAddSelectCategory").text("Please select a category!");
-        return false;
-    }
-
-    // Validate the CodeBar
-    var inputBarCode = $("#newItem #itemBarcode").val();
-    if (!validateItemBarCode(inputBarCode)) {
-        document.getElementById("errorAddItemBarCode").style.display = "block";
-        $("#newItem #errorAddItemBarCode").text("The barcode must be a maximum 13 characters " +
-            "and contain only digits!");
         return false;
     }
 
@@ -317,16 +300,6 @@ function validateUpdateItem() {
     document.getElementById("errorEditItemName").style.display = "none";
     document.getElementById("errorEditItemDate").style.display = "none";
     document.getElementById("errorEditItemDescription").style.display = "none";
-    document.getElementById("errorEditItemBarCode").style.display = "none";
-
-    // Validate the CodeBar
-    var inputBarCode = $("#updateItem #itemBarcode").val();
-    if (!validateItemBarCode(inputBarCode)) {
-        document.getElementById("errorEditItemBarCode").style.display = "block";
-        $("#updateItem #errorEditItemBarCode").text("The barcode must be a maximum 13 characters " +
-            "and contain only digits!");
-        return false;
-    }
 
     // Validate the name
     var inputName = $("#updateItem #itemName").val();
@@ -364,11 +337,6 @@ function validateItemName(inputName) {
 function validateItemDescription(inputDescription) {
     var regex = /^[A-Za-z0-9\s\W_]{0,255}$/g;
     return regex.test(inputDescription);
-}
-
-function validateItemBarCode(inputBarCode) {
-    var regex = /^[0-9]{0,13}$/g;
-    return regex.test(inputBarCode);
 }
 
 function validateDate(itemDate) {

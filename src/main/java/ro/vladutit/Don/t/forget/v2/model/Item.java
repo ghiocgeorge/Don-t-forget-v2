@@ -13,7 +13,6 @@ public class Item {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
-    private Long codeBarId;
     @NotNull
     @Size(min = 3, max = 40)
     private String name;
@@ -35,14 +34,12 @@ public class Item {
     }
 
     public Item(Long id,
-                Long codeBarId,
                 String name,
                 String description,
                 String expirationDate,
                 Category category,
                 User user) {
         this.id = id;
-        this.codeBarId = codeBarId;
         this.name = name;
         this.description = description;
         this.expirationDate = expirationDate;
@@ -72,14 +69,6 @@ public class Item {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getCodeBarId() {
-        return codeBarId;
-    }
-
-    public void setCodeBarId(Long codeBarId) {
-        this.codeBarId = codeBarId;
     }
 
     public String getName() {
