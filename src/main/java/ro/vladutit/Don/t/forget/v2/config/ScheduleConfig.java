@@ -28,7 +28,7 @@ public class ScheduleConfig {
     private final SimpleDateFormat simpleDate = new SimpleDateFormat(datePattern);
 
     //Execute once a day at 00:00 am
-    @Scheduled(cron = "0 34 11 * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void notifyExpiredItems() {
         final String startDate = simpleDate.format(new Date());
         final String endDate = LocalDate.parse(simpleDate.format(new Date())).plusDays(5).toString();
