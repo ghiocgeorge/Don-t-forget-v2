@@ -1,6 +1,7 @@
 package ro.vladutit.Don.t.forget.v2.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ro.vladutit.Don.t.forget.v2.model.Category;
 import ro.vladutit.Don.t.forget.v2.model.Item;
@@ -44,5 +45,13 @@ public class ItemService {
 
     public List<Item> getByUserId(Long userId){
         return itemRepository.getByUserId(userId);
+    }
+
+    public List<Item> getExpireItems(String Date1, String Date2) {
+        return (List<Item>) itemRepository.getByExpirationDateBetween(
+                Date1,
+                Date2,
+                Sort.by(Sort.Direction.ASC, "user_id").
+                        and(Sort.by(Sort.Direction.ASC, "expirationDate")));
     }
 }

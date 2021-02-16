@@ -93,10 +93,12 @@ public class UserController {
         }
         userService.save(user);
 
-        String subject = "Update info";
-        String message = "You just updated your information! Please contact us if you didn't made this operation!";
-        userService.sendNotificationEmail(user, message, subject);
-        smsService.sendNotificationSms(user, message);
+        String contentEmail = "<p>Dear " + user.getFullname() + ", <br><br>You just updated your information! Please "
+                + "contact us if you didn't made this operation!<br><br>Thank you!<br>The Don't forget app team.</p>";
+        String contentSMS = "You just updated your information!";
+
+        userService.sendNotificationEmail(user.getEmail(), contentEmail, "Update info");
+        smsService.sendNotificationSms(user, contentSMS);
         return "redirect:/profile";
     }
 

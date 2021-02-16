@@ -37,21 +37,19 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void sendNotificationEmail(User user, String message, String subject)
+    public void sendNotificationEmail(String to, String content, String subject)
             throws UnsupportedEncodingException, MessagingException {
-        String senderName = "Don't forget app team";
-        String mailContent = "<p>Dear " + user.getFullname() + ", <br><br>" + message +
-                "<br><br>Thank you!<br>The Don't forget app team.</p>";
+        String senderName = "Don't forget app";
 
-        MimeMessage message1 = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message1);
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
 
         helper.setFrom("dontforget@vladutit.ro", senderName);
-        helper.setTo(user.getEmail());
+        helper.setTo(to);
         helper.setSubject(subject);
-        helper.setText(mailContent, true);
+        helper.setText(content, true);
 
-        mailSender.send(message1);
+        mailSender.send(message);
     }
 
     public boolean checkIfUserExist(String email) {
