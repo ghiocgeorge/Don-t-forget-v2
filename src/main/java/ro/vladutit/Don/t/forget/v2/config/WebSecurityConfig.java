@@ -56,9 +56,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers(
-                    "/dashboard/**",
+                    "/categories/**",
                     "/category/**",
-                    "/all/**",
+                    "/all_items/**",
                     "/delete/**",
                     "/profile/**",
                     "/change_password/**").authenticated()
@@ -66,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin()
                 .usernameParameter("email")
-                .defaultSuccessUrl("/dashboard")
+                .defaultSuccessUrl("/all_items")
                 .permitAll()
             .and()
             .logout().logoutSuccessUrl("/").permitAll();

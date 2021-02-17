@@ -10,7 +10,7 @@ import ro.vladutit.Don.t.forget.v2.model.User;
 public class SmsService {
 
     private final static String ACCOUNT_SID = "ACf79d83e1ef84454b99835c9ba127de38";
-    private final static String AUTH_TOKEN = "65e8d6e9bcf18519b56ae63958284d1f";
+    private final static String AUTH_TOKEN = "";
     private final static String FROM_NO = "+16062577400";
 
     public void sendNotificationSms(User user, String smsContent) {

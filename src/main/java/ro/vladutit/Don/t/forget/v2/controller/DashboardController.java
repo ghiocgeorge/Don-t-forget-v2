@@ -28,7 +28,7 @@ public class DashboardController {
         return "index";
     }
 
-    @RequestMapping("/dashboard")
+    @RequestMapping("/categories")
     public String viewDashboard(
             Model item,
             Model category,
@@ -41,10 +41,10 @@ public class DashboardController {
         User user = userService.getByEmail(userEmail);
         itemList.addAttribute("listItems", itemService.getByUserId(user.getId()));
         categoryList.addAttribute("listCategories", categoryService.getByUserId(user.getId()));
-        return "dashboard/dashboard";
+        return "dashboard/categories";
     }
 
-    @RequestMapping("/all")
+    @RequestMapping("/all_items")
     public String viewDashboardAll(
             Model category,
             Model categoryList,
@@ -57,7 +57,7 @@ public class DashboardController {
         User user = userService.getByEmail(userEmail);
         itemList.addAttribute("listItems", itemService.getByUserId(user.getId()));
         categoryList.addAttribute("listCategories", categoryService.getByUserId(user.getId()));
-        return "dashboard/all";
+        return "dashboard/all_items";
     }
 
     @RequestMapping("/items/{categoryId}")
