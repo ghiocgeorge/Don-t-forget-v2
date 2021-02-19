@@ -14,6 +14,10 @@ import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 import ro.vladutit.Don.t.forget.v2.service.ItemService;
 import ro.vladutit.Don.t.forget.v2.service.UserService;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+
 @Controller
 public class DashboardController {
     @Autowired
@@ -22,6 +26,9 @@ public class DashboardController {
     public CategoryService categoryService;
     @Autowired
     public UserService userService;
+
+    private final String datePattern ="yyyy-MM-dd";
+    private final SimpleDateFormat simpleDate = new SimpleDateFormat(datePattern);
 
     @RequestMapping({"/", "/index"})
     public String index() {
@@ -58,6 +65,23 @@ public class DashboardController {
         itemList.addAttribute("listItems", itemService.getByUserId(user.getId()));
         categoryList.addAttribute("listCategories", categoryService.getByUserId(user.getId()));
         return "dashboard/all_items";
+    }
+
+    @RequestMapping("/expired")
+    public String viewExpiredItems(
+            Model category,
+            Model categoryList,
+            Model item,
+            Model itemList,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        final String endDate = simpleDate.format(new Date());
+        item.addAttribute("item", new Item());
+        category.addAttribute("category", new Category());
+        String userEmail = userDetails.getUsername();
+        User user = userService.getByEmail(userEmail);
+        itemList.addAttribute("listItems", itemService.getByUserIdBefore(user.getId(), endDate));
+        categoryList.addAttribute("listCategories", categoryService.getByUserId(user.getId()));
+        return "dashboard/expired";
     }
 
     @RequestMapping("/items/{categoryId}")

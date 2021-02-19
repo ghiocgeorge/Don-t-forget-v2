@@ -3,7 +3,6 @@ package ro.vladutit.Don.t.forget.v2.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ro.vladutit.Don.t.forget.v2.model.Category;
 import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.repository.ItemRepository;
 
@@ -53,5 +52,9 @@ public class ItemService {
                 Date2,
                 Sort.by(Sort.Direction.ASC, "user_id").
                         and(Sort.by(Sort.Direction.ASC, "expirationDate")));
+    }
+
+    public Object getByUserIdBefore(Long user_id, String endDate) {
+        return itemRepository.getByUserIdAndExpirationDateBefore(user_id, endDate);
     }
 }

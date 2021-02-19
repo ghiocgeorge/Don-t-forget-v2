@@ -13,4 +13,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> getByCategoryId (Long categoryId);
     List<Item> getByUserId(Long userId);
     List<Item> getByExpirationDateBetween(String Date1, String Date2, Sort and);
+    List<Item> getByUserIdAndExpirationDateBefore(Long user_id, String endDate);
 }
