@@ -57,4 +57,8 @@ public class ItemService {
     public Object getByUserIdBefore(Long user_id, String endDate) {
         return itemRepository.getByUserIdAndExpirationDateBefore(user_id, endDate);
     }
+
+    public Object getByUserIdBetween(Long user_id, String startDate, String endDate) {
+        return itemRepository.getByUserIdAndExpirationDateBetween(user_id, startDate, endDate);
+    }
 }

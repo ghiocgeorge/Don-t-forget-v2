@@ -84,6 +84,24 @@ public class DashboardController {
         return "dashboard/expired";
     }
 
+    @RequestMapping("/expires_soon")
+    public String viewExpiresSoonItems(
+            Model category,
+            Model categoryList,
+            Model item,
+            Model itemList,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        final String startDate = simpleDate.format(new Date());
+        final String endDate = LocalDate.parse(simpleDate.format(new Date())).plusDays(5).toString();
+        item.addAttribute("item", new Item());
+        category.addAttribute("category", new Category());
+        String userEmail = userDetails.getUsername();
+        User user = userService.getByEmail(userEmail);
+        itemList.addAttribute("listItems", itemService.getByUserIdBetween(user.getId(), startDate, endDate));
+        categoryList.addAttribute("listCategories", categoryService.getByUserId(user.getId()));
+        return "dashboard/expired";
+    }
+
     @RequestMapping("/items/{categoryId}")
     public String viewItemsByCategory(
             @PathVariable(value = "categoryId") Long categoryId,

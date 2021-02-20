@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/base_layout}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body class="bg-light">
+    <main role="main" layout:fragment="content" class="container">
+        <!-- Start expires soon items box -->
+        <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <div class="border-bottom border-gray pb-2 mb-0">
+                <div class="row justify-content-between">
+                    <div class="col align-middle">
+                        <h5>Items that expire soon</h5>
+                    </div>
+                    <div class="col-4 text-right">
+                        <a class="btn btn-sm" th:onclick="document.getElementById('add_item').style.display='block'"
+                            title="Add new item">
+                            <img class="align-top" src="../assets/brand/add-grey.svg" width="20"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3" th:each = "item : ${listItems}">
+                <div class="mr-2" style="width: 40px; text-align: center;">
+                    <div th:style="${item.category.color.colorCode}">
+                        <i th:class="${item.category.icon.iconName}" style="font-size: 30px;"></i>
+                    </div>
+                </div>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
+                    <strong class="d-block text-gray-dark" th:text = "${item.name}"></strong>
+                    <a th:text = "${item.expirationDate}"></a>
+                <div>
+                    <a class="btn btn-sm mb-3" th:id="${item.id}" th:onclick="view_item(id)" title="View item">
+                        <img src="../assets/brand/view-grey.svg" width="20"></a>
+                    <a class="btn btn-sm mb-3" th:id="${item.id}" th:onclick="edit_item(id)" title="Edit item">
+                        <img src="../assets/brand/edit-grey.svg" width="20"></a>
+                    <a th:id="${item.id}" th:onclick="confirm_delete_item(id)"
+                        class="btn btn-sm mb-3" title="Delete item">
+                        <img src="../assets/brand/delete-grey.svg" width="20"></a>
+                </div>
+                </p>
+            </div>
+        </div>
+        <!-- End expires soon items box -->
+    </main>
+</body>
+</html>
