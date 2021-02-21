@@ -4,7 +4,7 @@
 <div th:fragment="addCategory">
     <!-- Start Add Categpory -->
     <div id="add_category" class="modal">
-        <form th:action="@{/category/save}" th:object="${category}" method="POST" id="newCategory"
+        <form th:action="@{/category/new}" th:object="${category}" method="POST" id="newCategory"
             onSubmit="return validateAddCategory()">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
@@ -77,7 +77,7 @@
 <div th:fragment="updateCategory">
     <!-- Start Update Categpory -->
     <div id="update_category" class="modal">
-        <form th:action="@{/category/save}" th:object="${category}" method="POST" id="updateCategory"
+        <form th:action="@{/category/update}" th:object="${category}" method="POST" id="updateCategory"
             onSubmit="return validateUpdateCategory()">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">

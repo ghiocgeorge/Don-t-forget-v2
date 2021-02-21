@@ -145,7 +145,7 @@ function validateUpdateCategory() {
 }
 
 function validateCategoryName(inputName) {
-    var regex = /^[A-Za-z0-9_.]{3,17}$/g;
+    var regex = /^[A-Za-z0-9_\s.]{3,17}$/g;
     return regex.test(inputName);
 }
 

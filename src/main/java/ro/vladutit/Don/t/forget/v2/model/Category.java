@@ -1,8 +1,5 @@
 package ro.vladutit.Don.t.forget.v2.model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,10 +10,11 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotNull
     @Size(min = 3, max = 17)
-    @Column(unique = true)
     private String name;
+
     @NotNull
     private String description;
     private Icon icon;
