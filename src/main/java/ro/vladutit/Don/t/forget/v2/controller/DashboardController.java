@@ -1,5 +1,8 @@
 package ro.vladutit.Don.t.forget.v2.controller;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -10,13 +13,10 @@ import ro.vladutit.Don.t.forget.v2.model.Category;
 import ro.vladutit.Don.t.forget.v2.model.CustomUserDetails;
 import ro.vladutit.Don.t.forget.v2.model.Item;
 import ro.vladutit.Don.t.forget.v2.model.User;
+import ro.vladutit.Don.t.forget.v2.service.AppConfigService;
 import ro.vladutit.Don.t.forget.v2.service.CategoryService;
 import ro.vladutit.Don.t.forget.v2.service.ItemService;
 import ro.vladutit.Don.t.forget.v2.service.UserService;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 
 @Controller
 public class DashboardController {
@@ -26,6 +26,8 @@ public class DashboardController {
     public CategoryService categoryService;
     @Autowired
     public UserService userService;
+    @Autowired
+    public AppConfigService appConfigService;
 
     private final String datePattern ="yyyy-MM-dd";
     private final SimpleDateFormat simpleDate = new SimpleDateFormat(datePattern);
@@ -91,8 +93,10 @@ public class DashboardController {
             Model item,
             Model itemList,
             @AuthenticationPrincipal CustomUserDetails userDetails) {
+        final Long daysUntilExpired = Long.valueOf(appConfigService.getAppConfigByKey("days_until_expired").getValue());
         final String startDate = simpleDate.format(new Date());
-        final String endDate = LocalDate.parse(simpleDate.format(new Date())).plusDays(5).toString();
+        final String endDate = LocalDate.parse(simpleDate.format(new Date())).plusDays(daysUntilExpired).toString();
+
         item.addAttribute("item", new Item());
         category.addAttribute("category", new Category());
         String userEmail = userDetails.getUsername();
