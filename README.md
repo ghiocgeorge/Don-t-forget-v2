@@ -34,20 +34,20 @@ MySQL.
 
 ## **III. Dependencies from Spring:**
 
-### Spring Data JPA SQL
+### Spring Data JPA
 Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
 ### Thymeleaf TEMPLATE ENGINES
 A modern server-side Java template engine for both web and standalone environments. 
 Allows HTML to be correctly displayed in browsers and as static prototypes.
-### Spring Web WEB
+### Spring Web
 Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
-### Spring Security SECURITY
+### Spring Security
 Highly customizable authentication and access-control framework for Spring applications.
-### Spring Boot DevTools DEVELOPER TOOLS
+### Spring Boot DevTools
 Provides fast application restarts, LiveReload, and configurations for enhanced development experience.
 ### Validation I/O
 Bean Validation with Hibernate validator.
-### MySQL Driver SQL
+### MySQL Driver
 MySQL JDBC and R2DBC driver.
 ### Java Mail Sender I/O
 Send email using Java Mail and Spring Framework's JavaMailSender.
