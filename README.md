@@ -36,7 +36,7 @@ MySQL.
 
 ### Spring Data JPA
 Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
-### Thymeleaf TEMPLATE ENGINES
+### Thymeleaf
 A modern server-side Java template engine for both web and standalone environments. 
 Allows HTML to be correctly displayed in browsers and as static prototypes.
 ### Spring Web
@@ -45,13 +45,13 @@ Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat 
 Highly customizable authentication and access-control framework for Spring applications.
 ### Spring Boot DevTools
 Provides fast application restarts, LiveReload, and configurations for enhanced development experience.
-### Validation I/O
+### Validation
 Bean Validation with Hibernate validator.
 ### MySQL Driver
 MySQL JDBC and R2DBC driver.
-### Java Mail Sender I/O
+### Java Mail Sender
 Send email using Java Mail and Spring Framework's JavaMailSender.
-### Tomcat
+### Apache Tomcat
 Deploy a Spring Boot WAR into a Tomcat Server.
 
 ## **IV. Third part dependencies for Spring:**
